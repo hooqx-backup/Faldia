@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products FalDia</title>
+  <meta name="description" content="Explore FalDia's full sugar portfolio Raw VHP, Refined ICUMSA 45, Indian S-30, Liquid Sugar, and Icing Sugar. B2B specification-grade trading." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink:   { 900:'#0f1b2d', 700:'#27374d', 500:'#52617a', 400:'#71809b' },
+            brand: { 50:'#eef4fb', 100:'#dbe7f6', 200:'#bcd2ee', 300:'#8fb6e3', 500:'#2563a8', 600:'#1d4f8c', 700:'#173f70' },
+            sky2:  { 400:'#38bdf8', 500:'#0ea5e9' },
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(15,27,45,.04), 0 8px 24px -12px rgba(15,27,45,.12)',
+            lift: '0 2px 6px rgba(15,27,45,.06), 0 28px 56px -28px rgba(23,63,112,.28)',
+            glow: '0 10px 40px -12px rgba(37,99,168,.45)',
+          },
+          letterSpacing: { label: '0.18em' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="products-styles.css" />
+</head>
+
+<body class="font-sans text-ink-700 bg-white antialiased overflow-x-hidden">
+  <div id="scroll-progress"></div>
+
+  <!-- ══════════════════════ NAVBAR ══════════════════════ -->
+  <header class="sticky top-0 z-50 border-b border-white/40 bg-white/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-8">
+      <a href="index.html" class="group flex items-center">
+        <img src="assets/logo.png" alt="FalDia Sugar Supply, Simplified." class="h-10 w-auto transition-opacity duration-300 group-hover:opacity-85" />
+      </a>
+
+      <div class="hidden items-center gap-1 lg:flex">
+        <a href="index.html" class="rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">Home</a>
+        <a href="about.html" class="rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">About</a>
+        <div class="dropdown relative">
+          <button class="flex items-center gap-1 rounded-lg bg-brand-50 px-3 py-2 text-sm font-600 text-brand-600">
+            Products
+            <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 text-brand-500" fill="currentColor"><path d="M5.2 7.5 10 12.3l4.8-4.8 1.2 1.2-6 6-6-6 1.2-1.2Z"/></svg>
+          </button>
+          <div class="dropdown-menu absolute left-0 top-full w-64 pt-2">
+            <div class="glass overflow-hidden rounded-2xl p-2">
+              <a href="products.html#raw-sugar"     class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Raw Sugar VHP / V-VHP</a>
+              <a href="products.html#refined-white" class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Refined White ICUMSA 45-150</a>
+              <a href="products.html#indian-s30"    class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">S-30 Crystal (India)</a>
+              <a href="products.html#liquid-sugar"  class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Liquid Sugar 65-70° Brix</a>
+              <a href="products.html#icing-sugar"   class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Icing Sugar 6x-12x</a>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="contact.html" class="glossy sheen hidden rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-4 py-2.5 text-sm font-600 text-white shadow-glow transition hover:shadow-lift sm:inline-block">
+          <span class="relative">Request a Quote</span>
+        </a>
+        <button id="menuBtn" class="rounded-lg p-2 text-ink-700 transition hover:bg-white/70 lg:hidden" aria-label="Open menu">
+          <svg id="menuIcon" viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobileMenu" class="hidden border-t border-white/40 bg-white/90 backdrop-blur-xl lg:hidden">
+      <div class="space-y-1 px-6 py-4">
+        <a href="index.html"    class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">Home</a>
+        <a href="about.html"   class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">About</a>
+        <a href="products.html" class="block rounded-lg bg-brand-50 px-3 py-2.5 text-sm font-600 text-brand-600">Products</a>
+        <a href="contact.html" class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">Contact</a>
+        <a href="contact.html" class="mt-2 block rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-4 py-3 text-center text-sm font-600 text-white shadow-glow">Request a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ══════════════════════ HERO ══════════════════════ -->
+    <section class="prod-hero relative overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img src="assets/29222.jpg" alt="" class="h-full w-full object-cover object-center" loading="eager" />
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom,rgba(15,27,45,.82) 0%,rgba(23,63,112,.6) 50%,#fff 100%)"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(to right,rgba(15,27,45,.32) 0%,transparent 60%)"></div>
+      </div>
+
+      <div class="orb orb-ambient -left-24 -top-24 h-96 w-96 bg-brand-500/20" data-speed="0.12"></div>
+      <div class="orb orb-ambient-alt right-0 top-10 h-80 w-80 bg-sky2-400/15" data-speed="0.22"></div>
+      <div class="particle-field"></div>
+      <div class="grid-texture pointer-events-none absolute inset-0 opacity-25"></div>
+
+      <div class="relative z-10 mx-auto max-w-7xl px-6 py-24 text-center lg:px-8 lg:py-44">
+        <span class="reveal d1 glass-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-600 uppercase tracking-label text-white">
+          <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-sky2-400"></span>
+          Full Sugar Portfolio · B2B Grades
+        </span>
+
+        <h1 class="reveal d2 mt-7 font-display text-5xl font-500 leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          Five grades.<br class="hidden sm:block" />
+          <span class="gradient-animated-hero">One trusted source.</span>
+        </h1>
+
+        <p class="reveal d3 mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/90">
+          Select a product category below to explore our grades, technical specifications, and sourcing details.
+        </p>
+
+        <div class="reveal d4 mt-10 flex flex-wrap justify-center gap-3">
+          <span class="chip-hero float-slow rounded-2xl px-4 py-2">ICUMSA 45</span>
+          <span class="chip-hero float-slower rounded-2xl px-4 py-2">VHP Raw</span>
+          <span class="chip-hero float-slow rounded-2xl px-4 py-2">S-30 Crystal</span>
+          <span class="chip-hero float-slower rounded-2xl px-4 py-2">65-70° Brix</span>
+          <span class="chip-hero float-slow rounded-2xl px-4 py-2">6x-12x Icing</span>
+        </div>
+      </div>
+
+      <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-white to-transparent"></div>
+    </section>
+
+    <!-- ══════════════════════ CATEGORY TABS ══════════════════════ -->
+    <div class="cat-nav-outer sticky top-[73px] z-40 border-b border-white/40 bg-white/80 backdrop-blur-xl">
+      <div class="mx-auto max-w-7xl px-4 lg:px-8">
+        <div class="cat-tabs-scroll relative">
+          <div id="catTabs" class="flex items-stretch min-w-max"></div>
+          <div id="tabIndicator" class="tab-indicator"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════ PRODUCT SHOWCASE ══════════════════════ -->
+    <div id="productShowcase" class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
+      <!-- Rendered by JS -->
+    </div>
+
+    <!-- ══════════════════════ HOW IT WORKS ══════════════════════ -->
+    <section class="relative overflow-hidden py-24">
+      <div class="orb orb-ambient left-0 top-10 h-96 w-96 bg-brand-100/50"></div>
+      <div class="orb orb-ambient-alt right-0 bottom-0 h-80 w-80 bg-sky2-400/10"></div>
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+
+        <div class="reveal-up mb-16 text-center">
+          <p class="section-label justify-center">Trade Process</p>
+          <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900 sm:text-5xl">From inquiry to delivery.<br class="hidden sm:block" /><span class="gradient-animated">Five steps.</span></h2>
+          <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-500">A frictionless B2B workflow trusted by refiners, mills, and industrial buyers across three continents.</p>
+        </div>
+
+        <div class="relative">
+          <div class="step-connector hidden lg:block"></div>
+          <div class="stagger grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+
+            <div class="group text-center">
+              <div class="relative mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl glass ring-gradient shadow-soft transition group-hover:-translate-y-1.5 group-hover:shadow-lift">
+                <svg viewBox="0 0 24 24" class="h-8 w-8 text-brand-600" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-[11px] font-700 text-white shadow-sm">1</span>
+              </div>
+              <h3 class="font-600 text-ink-900">Submit Inquiry</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">Share your grade, volume, and destination. We respond within 4 hours.</p>
+            </div>
+
+            <div class="group text-center">
+              <div class="relative mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl glass ring-gradient shadow-soft transition group-hover:-translate-y-1.5 group-hover:shadow-lift">
+                <svg viewBox="0 0 24 24" class="h-8 w-8 text-brand-600" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span class="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-[11px] font-700 text-white shadow-sm">2</span>
+              </div>
+              <h3 class="font-600 text-ink-900">Receive Spec Sheet</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">Full technical dossier ICUMSA, moisture, polarization, and CoA included.</p>
+            </div>
+
+            <div class="group text-center">
+              <div class="relative mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl glass ring-gradient shadow-soft transition group-hover:-translate-y-1.5 group-hover:shadow-lift">
+                <svg viewBox="0 0 24 24" class="h-8 w-8 text-brand-600" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-[11px] font-700 text-white shadow-sm">3</span>
+              </div>
+              <h3 class="font-600 text-ink-900">Price Discovery</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">Market-linked pricing based on ICE No.11 / No.5 benchmarks. Fully transparent.</p>
+            </div>
+
+            <div class="group text-center">
+              <div class="relative mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl glass ring-gradient shadow-soft transition group-hover:-translate-y-1.5 group-hover:shadow-lift">
+                <svg viewBox="0 0 24 24" class="h-8 w-8 text-brand-600" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span class="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-[11px] font-700 text-white shadow-sm">4</span>
+              </div>
+              <h3 class="font-600 text-ink-900">Contract &amp; LC</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">GAFTA/FOSFA contract. LC at sight or TT advance. Full legal clarity before loading.</p>
+            </div>
+
+            <div class="group text-center">
+              <div class="relative mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl glass ring-gradient shadow-soft transition group-hover:-translate-y-1.5 group-hover:shadow-lift">
+                <svg viewBox="0 0 24 24" class="h-8 w-8 text-sky2-500" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><path d="M23 15l-4-4-4 4"/></svg>
+                <span class="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-sky2-500 text-[11px] font-700 text-white shadow-sm">5</span>
+              </div>
+              <h3 class="font-600 text-ink-900">Ship &amp; Receive</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">SGS-inspected cargo. Full B/L package, phytosanitary and insurance docs delivered.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="reveal-up mt-14 flex flex-col items-center justify-between gap-5 overflow-hidden rounded-[1.5rem] px-8 py-7 glass glossy sheen sm:flex-row">
+          <div>
+            <p class="font-600 text-ink-900">Ready to start a trade?</p>
+            <p class="mt-1 text-sm text-ink-500">Our desk responds within 4 business hours, Monday-Friday.</p>
+          </div>
+          <a href="mailto:trading@faldia.com" class="magnetic glossy sheen inline-flex shrink-0 items-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-7 py-3.5 text-sm font-600 text-white shadow-glow transition hover:shadow-lift">
+            Contact Trading Desk
+            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ ALL GRADES OVERVIEW ══════════════════════ -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-50/40 to-white py-20">
+      <div class="orb orb-ambient right-0 top-20 h-96 w-96 bg-brand-100/60"></div>
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="reveal-up mb-12 text-center">
+          <p class="section-label justify-center text-xs font-600 uppercase tracking-label text-brand-500">Quick Reference</p>
+          <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900">All grades at a glance.</h2>
+          <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-ink-500">Click any grade card to explore its full specifications and imagery.</p>
+        </div>
+        <div id="allGradesGrid" class="stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ QUALITY & CERTIFICATIONS ══════════════════════ -->
+    <section class="relative overflow-hidden bg-ink-900 py-24">
+      <div class="grid-texture pointer-events-none absolute inset-0 opacity-[0.07]"></div>
+      <div class="pointer-events-none absolute -right-24 -top-24 h-[520px] w-[520px] rounded-full bg-brand-600/20" style="filter:blur(130px)"></div>
+      <div class="pointer-events-none absolute -left-16 bottom-0 h-96 w-96 rounded-full bg-sky2-500/10" style="filter:blur(110px)"></div>
+
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="reveal-up mb-16 text-center">
+          <p class="section-label-dark justify-center">Trade Assurance</p>
+          <h2 class="mt-4 font-display text-4xl font-500 tracking-tight text-white sm:text-5xl">Every shipment. Fully verified.</h2>
+          <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/50">Third-party inspected, document-complete, and compliant with international trade standards at every loading port.</p>
+        </div>
+
+        <div class="stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="group rounded-2xl border border-white/[0.09] bg-white/[0.04] p-6 transition hover:border-brand-500/35 hover:bg-brand-500/[0.08]">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-brand-500/30 bg-brand-500/15">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-300" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="font-600 text-white">SGS Verified</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Pre-shipment inspection at origin port weight, quality, and ICUMSA compliance checked on every lot.</p>
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">Weight</span>
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">Quality</span>
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">ICUMSA</span>
+            </div>
+          </div>
+
+          <div class="group rounded-2xl border border-white/[0.09] bg-white/[0.04] p-6 transition hover:border-sky2-500/25 hover:bg-sky2-500/[0.06]">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-sky2-500/30 bg-sky2-500/10">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-sky2-400" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Bureau Veritas</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Independent audit of lab results, moisture content, and packaging integrity before vessel loading.</p>
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">Moisture</span>
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">Lab Audit</span>
+            </div>
+          </div>
+
+          <div class="group rounded-2xl border border-white/[0.09] bg-white/[0.04] p-6 transition hover:border-brand-500/35 hover:bg-brand-500/[0.08]">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-brand-500/30 bg-brand-500/15">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-300" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Incoterms 2020</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Full range of delivery terms FOB, CIF, CFR, CPT, DDP structured to your logistics and risk preference.</p>
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">FOB</span>
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">CIF</span>
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">DDP</span>
+            </div>
+          </div>
+
+          <div class="group rounded-2xl border border-white/[0.09] bg-white/[0.04] p-6 transition hover:border-sky2-500/25 hover:bg-sky2-500/[0.06]">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-xl border border-sky2-500/30 bg-sky2-500/10">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-sky2-400" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Document Package</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Complete trade doc set: Bill of Lading, CoA, phytosanitary certificate, insurance, and fumigation cert.</p>
+            <div class="mt-5 flex flex-wrap gap-1.5">
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">B/L</span>
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">CoA</span>
+              <span class="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] font-500 text-white/45">Phyto</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certification marquee -->
+        <div class="marquee-wrap mt-14 overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.03] py-5">
+          <div class="marquee-track text-sm font-500 text-white/30">
+            <span>SGS Verified Inspection</span><span class="text-white/10 mx-1">·</span>
+            <span>Bureau Veritas Audit</span><span class="text-white/10 mx-1">·</span>
+            <span>GAFTA Contract</span><span class="text-white/10 mx-1">·</span>
+            <span>FOSFA Certified</span><span class="text-white/10 mx-1">·</span>
+            <span>Incoterms 2020</span><span class="text-white/10 mx-1">·</span>
+            <span>LC at Sight</span><span class="text-white/10 mx-1">·</span>
+            <span>Full B/L Package</span><span class="text-white/10 mx-1">·</span>
+            <span>Phytosanitary Cert</span><span class="text-white/10 mx-1">·</span>
+            <span>ISO 9001 Aligned</span><span class="text-white/10 mx-1">·</span>
+            <span>Fumigation Cert</span><span class="text-white/10 mx-1">·</span>
+            <span>SGS Verified Inspection</span><span class="text-white/10 mx-1">·</span>
+            <span>Bureau Veritas Audit</span><span class="text-white/10 mx-1">·</span>
+            <span>GAFTA Contract</span><span class="text-white/10 mx-1">·</span>
+            <span>FOSFA Certified</span><span class="text-white/10 mx-1">·</span>
+            <span>Incoterms 2020</span><span class="text-white/10 mx-1">·</span>
+            <span>LC at Sight</span><span class="text-white/10 mx-1">·</span>
+            <span>Full B/L Package</span><span class="text-white/10 mx-1">·</span>
+            <span>Phytosanitary Cert</span><span class="text-white/10 mx-1">·</span>
+            <span>ISO 9001 Aligned</span><span class="text-white/10 mx-1">·</span>
+            <span>Fumigation Cert</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ PACKAGING & LOGISTICS ══════════════════════ -->
+    <section class="relative overflow-hidden py-24">
+      <div class="orb orb-ambient right-10 top-20 h-96 w-96 bg-brand-100/60"></div>
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+
+        <div class="reveal-up mb-16 text-center">
+          <p class="section-label justify-center">Packaging &amp; Logistics</p>
+          <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900 sm:text-5xl">Packed your way.<br class="hidden sm:block" /><span class="gradient-animated">Delivered on time.</span></h2>
+          <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-500">Standard and custom packaging available for all grades, with full port-to-port or last-mile logistics management.</p>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-2">
+
+          <!-- Packaging formats -->
+          <div class="reveal-left">
+            <p class="mb-5 text-xs font-700 uppercase tracking-label text-brand-500">Packaging Formats</p>
+            <div class="space-y-3">
+              <div class="glass glossy group flex items-center gap-4 rounded-2xl px-5 py-4 transition hover:shadow-lift">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M16 8V6a4 4 0 0 0-8 0v2" stroke-linecap="round"/></svg>
+                </span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-600 text-ink-900 text-sm">50 kg PP / Jute Bags</p>
+                  <p class="text-xs text-ink-500 mt-0.5">Standard B2B export pack for raw and refined grades</p>
+                </div>
+                <span class="shrink-0 rounded-lg bg-brand-50 px-2.5 py-1 text-xs font-600 text-brand-600">Most Common</span>
+              </div>
+              <div class="glass glossy group flex items-center gap-4 rounded-2xl px-5 py-4 transition hover:shadow-lift">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/></svg>
+                </span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-600 text-ink-900 text-sm">1 MT Big Bags (FIBC)</p>
+                  <p class="text-xs text-ink-500 mt-0.5">Flexible intermediate bulk containers for easy port handling</p>
+                </div>
+                <span class="shrink-0 rounded-lg bg-brand-50/80 px-2.5 py-1 text-xs font-600 text-ink-500">Bulk Ready</span>
+              </div>
+              <div class="glass glossy group flex items-center gap-4 rounded-2xl px-5 py-4 transition hover:shadow-lift">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h5l2 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-600 text-ink-900 text-sm">Bulk Vessel / Breakbulk</p>
+                  <p class="text-xs text-ink-500 mt-0.5">25,000-50,000 MT shipments from Brazil, India, Thailand</p>
+                </div>
+                <span class="shrink-0 rounded-lg bg-brand-50/80 px-2.5 py-1 text-xs font-600 text-ink-500">Large Volume</span>
+              </div>
+              <div class="glass glossy group flex items-center gap-4 rounded-2xl px-5 py-4 transition hover:shadow-lift">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky2-400/10 text-sky2-500">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22c6-3 8-7 8-11a8 8 0 1 0-16 0c0 4 2 8 8 11z"/><circle cx="12" cy="11" r="3"/></svg>
+                </span>
+                <div class="flex-1 min-w-0">
+                  <p class="font-600 text-ink-900 text-sm">ISO Tank (Liquid Sugar)</p>
+                  <p class="text-xs text-ink-500 mt-0.5">20,000-24,000 L food-grade tanks for 65-70° Brix</p>
+                </div>
+                <span class="shrink-0 rounded-lg bg-sky2-400/10 px-2.5 py-1 text-xs font-600 text-sky2-500">Liquid</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Incoterms + table -->
+          <div class="reveal-right space-y-8">
+            <div>
+              <p class="mb-5 text-xs font-700 uppercase tracking-label text-brand-500">Incoterms We Offer</p>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="glass glossy rounded-2xl px-5 py-4 text-center">
+                  <p class="font-display text-2xl font-500 text-brand-600">FOB</p>
+                  <p class="mt-1 text-xs text-ink-500">Free On Board buyer arranges freight</p>
+                </div>
+                <div class="glass glossy rounded-2xl px-5 py-4 text-center">
+                  <p class="font-display text-2xl font-500 text-brand-600">CIF</p>
+                  <p class="mt-1 text-xs text-ink-500">Cost, Insurance &amp; Freight included</p>
+                </div>
+                <div class="glass glossy rounded-2xl px-5 py-4 text-center">
+                  <p class="font-display text-2xl font-500 text-brand-600">CFR</p>
+                  <p class="mt-1 text-xs text-ink-500">Cost &amp; Freight FalDia books vessel</p>
+                </div>
+                <div class="glass glossy rounded-2xl px-5 py-4 text-center">
+                  <p class="font-display text-2xl font-500 text-brand-600">DDP</p>
+                  <p class="mt-1 text-xs text-ink-500">Delivered Duty Paid door-to-door</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <p class="mb-4 text-xs font-700 uppercase tracking-label text-brand-500">Minimum Order &amp; Lead Times</p>
+              <div class="glass overflow-hidden rounded-2xl">
+                <table class="inco-table w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-black/[0.06]">
+                      <th class="px-5 py-3 text-left text-xs font-600 uppercase tracking-wide text-ink-400">Grade</th>
+                      <th class="px-5 py-3 text-left text-xs font-600 uppercase tracking-wide text-ink-400">Min. Order</th>
+                      <th class="px-5 py-3 text-left text-xs font-600 uppercase tracking-wide text-ink-400">Lead Time</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-black/[0.04]">
+                    <tr class="hover:bg-brand-50/50 transition">
+                      <td class="px-5 py-3 font-600 text-ink-900 text-xs">Raw Sugar VHP</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">1,000 MT</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">2-4 weeks</td>
+                    </tr>
+                    <tr class="hover:bg-brand-50/50 transition">
+                      <td class="px-5 py-3 font-600 text-ink-900 text-xs">Refined White</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">500 MT</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">1-3 weeks</td>
+                    </tr>
+                    <tr class="hover:bg-brand-50/50 transition">
+                      <td class="px-5 py-3 font-600 text-ink-900 text-xs">S-30 Crystal</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">500 MT</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">1-3 weeks</td>
+                    </tr>
+                    <tr class="hover:bg-brand-50/50 transition">
+                      <td class="px-5 py-3 font-600 text-ink-900 text-xs">Liquid Sugar</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">20 MT</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">1-2 weeks</td>
+                    </tr>
+                    <tr class="hover:bg-brand-50/50 transition">
+                      <td class="px-5 py-3 font-600 text-ink-900 text-xs">Icing Sugar</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">100 MT</td>
+                      <td class="px-5 py-3 text-ink-500 text-xs">1-2 weeks</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ TRADING ADVANTAGE ══════════════════════ -->
+    <section class="relative overflow-hidden py-24" style="background:linear-gradient(135deg,#173f70 0%,#0f1b2d 50%,#1d4f8c 100%)">
+      <div class="grid-texture pointer-events-none absolute inset-0 opacity-[0.07]"></div>
+      <div class="pointer-events-none absolute -left-32 -bottom-16 h-[500px] w-[500px] rounded-full bg-sky2-500/15" style="filter:blur(120px)"></div>
+      <div class="pointer-events-none absolute -right-16 -top-16 h-96 w-96 rounded-full bg-brand-300/20" style="filter:blur(100px)"></div>
+
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="reveal-up mb-16 text-center">
+          <p class="section-label-dark justify-center">Why FalDia</p>
+          <h2 class="mt-4 font-display text-4xl font-500 tracking-tight text-white sm:text-5xl">Precision at every layer of the trade.</h2>
+          <p class="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/50">From mill-gate sourcing to final delivery, we own the detail so you don't have to.</p>
+        </div>
+
+        <!-- Stats row -->
+        <div class="stagger mb-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div class="rounded-2xl border border-white/[0.1] bg-white/[0.05] px-6 py-7 text-center">
+            <p class="font-display text-4xl font-500 text-white">50<span class="text-sky2-400">+</span></p>
+            <p class="mt-2 text-xs font-500 uppercase tracking-wider text-white/40">Countries Reached</p>
+          </div>
+          <div class="rounded-2xl border border-white/[0.1] bg-white/[0.05] px-6 py-7 text-center">
+            <p class="font-display text-4xl font-500 text-white">1M<span class="text-sky2-400">+</span></p>
+            <p class="mt-2 text-xs font-500 uppercase tracking-wider text-white/40">MT Traded Annually</p>
+          </div>
+          <div class="rounded-2xl border border-white/[0.1] bg-white/[0.05] px-6 py-7 text-center">
+            <p class="font-display text-4xl font-500 text-white">4<span class="text-sky2-400">h</span></p>
+            <p class="mt-2 text-xs font-500 uppercase tracking-wider text-white/40">Desk Response Time</p>
+          </div>
+          <div class="rounded-2xl border border-white/[0.1] bg-white/[0.05] px-6 py-7 text-center">
+            <p class="font-display text-4xl font-500 text-white">5</p>
+            <p class="mt-2 text-xs font-500 uppercase tracking-wider text-white/40">Grade Categories</p>
+          </div>
+        </div>
+
+        <!-- Feature grid -->
+        <div class="stagger grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-2xl border border-white/[0.09] bg-white/[0.04] p-7 transition hover:border-brand-400/30 hover:bg-white/[0.07]">
+            <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/20">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-sky2-400" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Mill-Gate Sourcing</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Direct relationships with refineries and mills in Brazil, India, and Thailand zero broker layers, zero margin stacking.</p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.09] bg-white/[0.04] p-7 transition hover:border-brand-400/30 hover:bg-white/[0.07]">
+            <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/20">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-sky2-400" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l1.17-1.17a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Dedicated Trade Desk</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Single point of contact from inquiry to final delivery. No ticket queues, no hand-offs direct human communication.</p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.09] bg-white/[0.04] p-7 transition hover:border-brand-400/30 hover:bg-white/[0.07]">
+            <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/20">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-sky2-400" fill="none" stroke="currentColor" stroke-width="1.7"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Market-Linked Pricing</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Offers pegged to ICE No.11 or No.5 futures. Transparent spread disclosure you always know exactly what you're paying for.</p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.09] bg-white/[0.04] p-7 transition hover:border-brand-400/30 hover:bg-white/[0.07]">
+            <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/20">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-sky2-400" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Global Port Access</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Santos · Mundra · Laem Chabang · Rotterdam · Jeddah. Multi-origin flexibility routed through the most cost-efficient loading ports.</p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.09] bg-white/[0.04] p-7 transition hover:border-brand-400/30 hover:bg-white/[0.07]">
+            <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/20">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-sky2-400" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Payment Flexibility</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">LC at Sight, 30-60 day DA, TT advance, or DA/DP. Structured to match your working capital cycle and banking relationships.</p>
+          </div>
+
+          <div class="rounded-2xl border border-white/[0.09] bg-white/[0.04] p-7 transition hover:border-brand-400/30 hover:bg-white/[0.07]">
+            <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/20">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-sky2-400" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3 class="font-600 text-white">Full Shipment Visibility</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/45">Real-time updates from loading confirmation through vessel ETA. No black-box shipping complete transparency at every stage.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ CTA ══════════════════════ -->
+    <section class="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <div class="reveal-scale glossy sheen relative mx-auto max-w-4xl overflow-hidden rounded-[2rem] px-8 py-16 text-center shadow-lift">
+        <div class="absolute inset-0 z-0">
+          <img src="assets/2151953961.jpg" alt="" class="h-full w-full object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-br from-ink-900/90 via-brand-700/82 to-ink-900/92"></div>
+        </div>
+        <div class="orb -left-10 -top-10 h-64 w-64 bg-sky2-500/30" style="z-index:10"></div>
+        <div class="orb -right-10 -bottom-10 h-64 w-64 bg-brand-300/30" style="z-index:10"></div>
+        <div class="grid-texture pointer-events-none absolute inset-0 z-10 opacity-25"></div>
+        <div class="relative z-20">
+          <span class="glass-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-600 uppercase tracking-label text-white">
+            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-sky2-400"></span>
+            Trading Desk · 4-hour response
+          </span>
+          <h2 class="mt-6 font-display text-4xl font-500 tracking-tight text-white sm:text-5xl">Need a spec sheet?</h2>
+          <p class="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-sky-100">
+            Tell us your grade, destination, and volume. We'll respond with a documentation-ready offer within 4 hours.
+          </p>
+          <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href="mailto:trading@faldia.com" class="magnetic glass glossy group inline-flex w-full items-center justify-center gap-2 rounded-xl px-8 py-4 text-sm font-600 text-ink-900 transition hover:text-brand-600 sm:w-auto">
+              <span class="relative">Request a Quote</span>
+              <svg viewBox="0 0 20 20" class="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+            <a href="contact.html" class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/40 px-8 py-4 text-sm font-600 text-white transition hover:bg-white/10 sm:w-auto">Contact the desk</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ LIGHTBOX ══════════════════════ -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Product image viewer">
+      <div id="lbBackdrop" class="lb-backdrop"></div>
+      <div class="lb-content">
+        <button id="lbClose" class="lb-close-btn" aria-label="Close">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"/></svg>
+        </button>
+        <button id="lbPrev" class="lb-nav-btn lb-prev" aria-label="Previous image">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="lbNext" class="lb-nav-btn lb-next" aria-label="Next image">
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="lb-img-wrap">
+          <img id="lbImg" src="" alt="" class="lb-img" />
+        </div>
+        <div class="lb-caption">
+          <div class="lb-caption-body">
+            <p id="lbTitle" class="lb-title"></p>
+            <div class="lb-meta">
+              <span id="lbGrade" class="lb-grade"></span>
+              <span id="lbTag"   class="lb-tag"></span>
+            </div>
+          </div>
+          <span id="lbCounter" class="lb-counter"></span>
+        </div>
+        <div class="lb-dots" id="lbDots"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="relative overflow-hidden border-t border-white/40 bg-gradient-to-b from-brand-50/70 via-sky-50/40 to-white">
+    <div class="orb orb-ambient right-10 -top-10 h-80 w-80 bg-brand-100"></div>
+    <div class="orb orb-ambient-alt left-0 bottom-0 h-72 w-72 bg-sky-100"></div>
+
+    <div class="relative mx-auto max-w-7xl px-6 pt-16 lg:px-8">
+
+      <div class="reveal-up glass glossy sheen relative overflow-hidden rounded-[2rem] px-7 py-9 lg:px-12 lg:py-10">
+        <div class="relative grid items-center gap-8 lg:grid-cols-2">
+          <div>
+            <p class="text-xs font-600 uppercase tracking-label text-brand-500">Market intelligence</p>
+            <h3 class="mt-2 font-display text-2xl font-500 leading-snug text-ink-900 sm:text-3xl">Get our weekly sugar market brief.</h3>
+            <p class="mt-2 text-sm text-ink-500">Origin movements, ICUMSA spreads, freight signals straight to your inbox.</p>
+          </div>
+          <div class="flex w-full flex-col gap-3 sm:flex-row sm:justify-end">
+            <div class="newsletter-input glass flex w-full items-center gap-2 rounded-xl px-4 py-1 sm:max-w-xs transition">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-ink-400" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <input type="email" placeholder="you@company.com" class="w-full bg-transparent py-2.5 text-sm text-ink-700 placeholder:text-ink-400 focus:outline-none" />
+            </div>
+            <a href="mailto:hello@faldia.com" class="magnetic glossy sheen inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-6 py-3 text-sm font-600 text-white shadow-glow transition hover:shadow-lift">
+              <span class="relative">Subscribe</span>
+              <svg viewBox="0 0 20 20" class="relative h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <a href="index.html" class="flex items-center">
+            <img src="assets/logo.png" alt="Falcon Diamond" class="h-10 w-auto" />
+          </a>
+          <p class="mt-5 max-w-sm font-display text-xl font-400 leading-snug text-ink-700">Precision Sugar Trading. <span class="bg-gradient-to-r from-brand-600 to-sky2-500 bg-clip-text text-transparent">Global Reach.</span> Assured Quality.</p>
+          <div class="mt-6 space-y-2.5">
+            <a href="mailto:hello@faldia.com" class="group flex items-center gap-3 text-sm text-ink-500 transition hover:text-brand-600">
+              <span class="glass glossy flex h-9 w-9 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              hello@faldia.com
+            </a>
+            <a href="mailto:trading@faldia.com" class="group flex items-center gap-3 text-sm text-ink-500 transition hover:text-brand-600">
+              <span class="glass glossy flex h-9 w-9 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              trading@faldia.com
+            </a>
+          </div>
+          <div class="mt-7 flex gap-2.5">
+            <a href="#" aria-label="LinkedIn" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#0a66c2,#004182);box-shadow:0 6px 18px -4px rgba(10,102,194,.5)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.2 8.2h4.6V24H.2V8.2Zm7.5 0h4.4v2.16h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v9.02h-4.6v-8c0-1.9-.03-4.36-2.66-4.36-2.66 0-3.07 2.08-3.07 4.22V24H7.7V8.2Z"/></svg></a>
+            <a href="#" aria-label="X" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#14171a,#2c2c2c);box-shadow:0 6px 18px -4px rgba(0,0,0,.38)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M18.2 2H21l-6.6 7.5L22 22h-6.1l-4.8-6.3L5.6 22H2.8l7-8L2 2h6.2l4.3 5.7L18.2 2Zm-2.1 18h1.7L7.9 3.7H6.1L16.1 20Z"/></svg></a>
+            <a href="#" aria-label="WhatsApp" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 6px 18px -4px rgba(37,211,102,.42)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.9 2.6 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 5 4.3 1.8.7 2.5.8 3.4.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.3-.2Z"/></svg></a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Company</p>
+          <ul class="mt-4 space-y-3 text-sm text-ink-500">
+            <li><a href="index.html" class="transition hover:text-brand-600 hover:pl-1">Home</a></li>
+            <li><a href="about.html" class="transition hover:text-brand-600 hover:pl-1">About</a></li>
+            <li><a href="products.html" class="font-600 text-brand-600">Products</a></li>
+            <li><a href="contact.html" class="transition hover:text-brand-600 hover:pl-1">Contact</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Products</p>
+          <ul class="mt-4 space-y-3 text-sm text-ink-500">
+            <li><a href="products.html#raw-sugar" class="transition hover:text-brand-600 hover:pl-1">Raw Sugar</a></li>
+            <li><a href="products.html#refined-white" class="transition hover:text-brand-600 hover:pl-1">Refined White</a></li>
+            <li><a href="products.html#indian-s30" class="transition hover:text-brand-600 hover:pl-1">S-30 Crystal</a></li>
+            <li><a href="products.html#liquid-sugar" class="transition hover:text-brand-600 hover:pl-1">Liquid &amp; Icing</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-3">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Assurance</p>
+          <ul class="mt-4 space-y-3">
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SGS Verified</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Bureau Veritas</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Incoterms 2020</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Doc Package</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/60 py-8 sm:flex-row">
+        <p class="text-sm text-ink-400">© 2026 Falcon Diamond · faldia.com</p>
+        <div class="flex gap-6 text-sm text-ink-400">
+          <a href="#" class="transition hover:text-brand-600">Privacy</a>
+          <a href="#" class="transition hover:text-brand-600">Terms</a>
+          <a href="#" class="transition hover:text-brand-600">Incoterms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+  <script src="products-main.js" defer></script>
+</body>
+</html>

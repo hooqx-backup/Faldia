@@ -1,0 +1,148 @@
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS — about page specific
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hero paragraph visibility — 241.jpg is a busy colorful chart */
+.hero-para-visible {
+  text-shadow: 0 2px 16px rgba(0,0,0,.82), 0 1px 4px rgba(0,0,0,.65);
+  background: rgba(10,18,35,.44);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1rem 1.75rem;
+  display: inline-block;
+}
+
+/* Values card — lift + glow on hover */
+.values-card {
+  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease !important;
+}
+.values-card:hover {
+  transform: translateY(-10px) scale(1.015) !important;
+  box-shadow: 0 24px 64px -16px rgba(14,165,233,.35), 0 6px 20px -8px rgba(0,0,0,.3) !important;
+}
+
+/* Icon bounce on card hover */
+@keyframes iconBounce {
+  0%   { transform: scale(1) rotate(0deg); }
+  30%  { transform: scale(1.18) rotate(-8deg); }
+  60%  { transform: scale(.95) rotate(4deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.values-card:hover .icon-badge {
+  animation: iconBounce .55s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+
+/* Team card float on hover */
+@keyframes teamFloat {
+  0%,100% { box-shadow: 0 4px 20px -8px rgba(23,63,112,.25); transform: translateY(0); }
+  50%     { box-shadow: 0 20px 48px -12px rgba(14,165,233,.3); transform: translateY(-6px); }
+}
+.team-float-card {
+  transition: box-shadow .4s ease, transform .4s ease;
+}
+.team-float-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 52px -14px rgba(14,165,233,.28);
+}
+
+/* ── Dark section edge blending ─────────────────────────────────
+   Adds a solid→transparent fade at the top and bottom of each
+   dark photo section so consecutive dark sections dissolve into
+   each other instead of showing a hard cut line.               */
+.dark-blend::before,
+.dark-blend::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 110px;
+  pointer-events: none;
+  z-index: 3;
+}
+.dark-blend::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgb(15,27,45) 0%, transparent 100%);
+}
+.dark-blend::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgb(15,27,45) 0%, transparent 100%);
+}
+
+/* Section label pulse (dark variant, animated) */
+@keyframes labelLine {
+  0%,100% { transform: scaleX(1); opacity:1; }
+  50%     { transform: scaleX(.65); opacity:.55; }
+}
+.section-label-dark::before {
+  animation: labelLine 2.8s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   about-styles.css  —  About page only (about.html)
+   Loaded in addition to styles.css.
+   Add all about-page-specific overrides and new components here.
+   Do NOT use this file for index.html or future pages.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Team card avatar glow on hover ────────────────────────────── */
+.team-avatar-wrap {
+  position: relative;
+}
+.team-avatar-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(37,99,168,.45), rgba(14,165,233,.22));
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.group:hover .team-avatar-wrap::after { opacity: 1; }
+
+/* ── Process step vertical connector ───────────────────────────── */
+.process-step {
+  position: relative;
+}
+.process-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 2.2rem;
+  left: 1.4rem;
+  width: 2px;
+  height: calc(100% + 1.25rem);
+  background: linear-gradient(to bottom, rgba(37,99,168,.35), rgba(14,165,233,.08));
+  pointer-events: none;
+}
+
+/* ── Approach feature row ───────────────────────────────────────── */
+.approach-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 1rem;
+  transition: background .2s ease;
+}
+.approach-feature:hover {
+  background: rgba(255,255,255,.10);
+}
+
+/* ── Hero stat pill (about page variant) ───────────────────────── */
+.about-stat-pill {
+  background: rgba(255,255,255,.13);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: 1rem;
+  padding: .875rem 1.75rem;
+  text-align: center;
+  transition: background .25s ease, transform .25s ease;
+}
+.about-stat-pill:hover {
+  background: rgba(255,255,255,.20);
+  transform: translateY(-3px);
+}

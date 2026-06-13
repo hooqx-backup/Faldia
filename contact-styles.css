@@ -1,0 +1,270 @@
+/* ═══════════════════════════════════════════════════════════════
+   contact-styles.css  —  Contact page only (contact.html)
+   Loaded in addition to styles.css.
+   Do NOT use this file for index.html, about.html, or future pages.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Contact form inputs ──────────────────────────────────────── */
+.contact-field-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+
+.contact-label {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #52617a;
+}
+
+.contact-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1.5px solid rgba(188,210,238,.7);
+  background: rgba(238,244,251,.45);
+  padding: .85rem 1.1rem;
+  font-size: .875rem;
+  color: #27374d;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.contact-input::placeholder { color: #71809b; }
+
+.contact-input:focus {
+  border-color: #2563a8;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 0 0 3px rgba(37,99,168,.12), 0 2px 8px -4px rgba(37,99,168,.2);
+}
+
+.contact-input:hover:not(:focus) {
+  border-color: rgba(143,182,227,.9);
+  background: rgba(238,244,251,.7);
+}
+
+/* Select wrapper for custom arrow */
+.contact-select-wrap {
+  position: relative;
+}
+.contact-select { cursor: pointer; padding-right: 2.5rem; }
+.contact-select-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: #71809b;
+  pointer-events: none;
+}
+
+/* Checkbox */
+.contact-checkbox {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: .35rem;
+  border: 1.5px solid rgba(143,182,227,.8);
+  background: rgba(238,244,251,.5);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color .2s, background .2s;
+  position: relative;
+}
+.contact-checkbox:checked {
+  background: linear-gradient(135deg, #2563a8, #173f70);
+  border-color: #2563a8;
+}
+.contact-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px; top: 1px;
+  width: 6px; height: 9px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(40deg);
+}
+.contact-checkbox:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37,99,168,.15);
+}
+
+/* Submit button padding util */
+.py-4\.5 { padding-top: 1.125rem; padding-bottom: 1.125rem; }
+
+/* ── Info cards ───────────────────────────────────────────────── */
+.contact-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(255,255,255,.88), rgba(255,255,255,.58));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.72);
+  box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 8px 24px -12px rgba(23,63,112,.12);
+  transition: box-shadow .28s ease, transform .28s ease;
+}
+.contact-info-card:hover {
+  box-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 20px 40px -16px rgba(23,63,112,.2);
+  transform: translateY(-3px);
+}
+
+.contact-info-icon {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: .875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -8px rgba(37,99,168,.45);
+}
+
+/* ── Map styles ───────────────────────────────────────────────── */
+.map-bg {
+  background: linear-gradient(135deg, #f0f6ff 0%, #e8f1fb 40%, #f0f9ff 100%);
+}
+
+/* Map route animation */
+@keyframes dashMove {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -200; }
+}
+.map-route { animation: dashMove 8s linear infinite; }
+
+/* Location pin base */
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pulse rings on HQ pin */
+.map-pin-pulse {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(37,99,168,.2);
+  animation: mapPulse 2.2s ease-out infinite;
+}
+@keyframes mapPulse {
+  0%   { transform: scale(.5); opacity:.7; }
+  100% { transform: scale(2.2); opacity:0; }
+}
+
+/* Pin dots */
+.map-pin-dot {
+  width: .9rem;
+  height: .9rem;
+  border-radius: 50%;
+  border: 2.5px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+.map-pin-dot-hq     { background: linear-gradient(135deg, #2563a8, #173f70); width:1.1rem; height:1.1rem; }
+.map-pin-dot-origin { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.map-pin-dot-market { background: linear-gradient(135deg, #10b981, #059669); }
+
+/* Pin labels */
+.map-pin-label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.map-pin-label-right { left: calc(100% + .5rem); top: 50%; transform: translateY(-50%); }
+.map-pin-label-left  { right: calc(100% + .5rem); top: 50%; transform: translateY(-50%); align-items: flex-end; }
+
+.map-pin-badge {
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .12rem .45rem;
+  border-radius: .35rem;
+  line-height: 1.4;
+}
+.map-pin-badge-hq     { background: rgba(37,99,168,.12); color: #1d4f8c; }
+.map-pin-badge-origin { background: rgba(245,158,11,.14); color: #92400e; }
+.map-pin-badge-market { background: rgba(16,185,129,.13); color: #065f46; }
+
+.map-pin-name {
+  font-size: .72rem;
+  font-weight: 600;
+  color: #27374d;
+}
+
+/* Compass */
+.compass {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.compass-ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255,255,255,.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 4px 16px -4px rgba(23,63,112,.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.compass-n, .compass-s, .compass-e, .compass-w {
+  position: absolute;
+  font-size: .5rem;
+  font-weight: 700;
+  color: #52617a;
+}
+.compass-n { top: .2rem; left: 50%; transform: translateX(-50%); color: #173f70; }
+.compass-s { bottom: .2rem; left: 50%; transform: translateX(-50%); }
+.compass-e { right: .3rem; top: 50%; transform: translateY(-50%); }
+.compass-w { left: .3rem; top: 50%; transform: translateY(-50%); }
+.compass-needle {
+  width: 2px;
+  height: 1.6rem;
+  background: linear-gradient(to bottom, #173f70 50%, #e11d48 50%);
+  border-radius: 2px;
+  transform: rotate(0deg);
+}
+
+/* ── Form success state — hidden until JS shows it ───────────── */
+#formSuccess { display: none; }
+#formSuccess.show { display: flex; }
+
+/* ── Google Maps iframe wrapper ──────────────────────────────── */
+.map-iframe-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 480px;
+  border: 0;
+}
+@media (max-width: 640px) {
+  .map-iframe-wrap iframe { height: 320px; }
+}
+
+/* ── Input field focus-within animation ──────────────────────── */
+@keyframes fieldPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.008); }
+  100% { transform: scale(1); }
+}
+.contact-input:focus { animation: fieldPop .2s ease; }

@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FalDia Sugar Supply, Simplified</title>
+  <meta name="description" content="FalDia global B2B sugar trading. Raw to refined, consistent quality, dependable delivery, competitive terms." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: { 900:'#0f1b2d', 700:'#27374d', 500:'#52617a', 400:'#71809b' },
+            brand: { 50:'#eef4fb',100:'#dbe7f6',200:'#bcd2ee',300:'#8fb6e3',500:'#2563a8',600:'#1d4f8c',700:'#173f70' },
+            sky2:  { 400:'#38bdf8', 500:'#0ea5e9' },
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(15,27,45,.04), 0 8px 24px -12px rgba(15,27,45,.12)',
+            lift: '0 2px 6px rgba(15,27,45,.06), 0 28px 56px -28px rgba(23,63,112,.28)',
+            glow: '0 10px 40px -12px rgba(37,99,168,.45)',
+          },
+          letterSpacing: { label: '0.18em' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="font-sans text-ink-700 bg-white antialiased overflow-x-hidden">
+  <div id="scroll-progress"></div>
+
+  <!-- ============== NAVBAR ============== -->
+  <header class="sticky top-0 z-50 border-b border-white/40 bg-white/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-8">
+      <a href="#" class="group flex items-center">
+        <img src="assets/logo.png" alt="FalDia Sugar Supply, Simplified." class="h-10 w-auto transition-opacity duration-300 group-hover:opacity-85" />
+      </a>
+
+      <div class="hidden items-center gap-1 lg:flex">
+        <a href="#" class="rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">Home</a>
+        <a href="about.html" class="rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">About</a>
+        <div class="dropdown relative">
+          <button class="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">
+            Products
+            <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 text-ink-400" fill="currentColor"><path d="M5.2 7.5 10 12.3l4.8-4.8 1.2 1.2-6 6-6-6 1.2-1.2Z"/></svg>
+          </button>
+          <div class="dropdown-menu absolute left-0 top-full w-64 pt-2">
+            <div class="glass overflow-hidden rounded-2xl p-2">
+              <a href="products.html#raw-sugar"     class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Raw Sugar VHP / V-VHP</a>
+              <a href="products.html#refined-white" class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Refined White ICUMSA 45-150</a>
+              <a href="products.html#indian-s30"    class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">S-30 Crystal (India)</a>
+              <a href="products.html#liquid-sugar"  class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Liquid Sugar 65-70° Brix</a>
+              <a href="products.html#icing-sugar"   class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Icing Sugar 6x-12x</a>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="glossy sheen hidden rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-4 py-2.5 text-sm font-600 text-white shadow-glow transition hover:shadow-lift sm:inline-block">
+          <span class="relative">Request a Quote</span>
+        </a>
+        <button id="menuBtn" class="rounded-lg p-2 text-ink-700 transition hover:bg-white/70 lg:hidden" aria-label="Open menu">
+          <svg id="menuIcon" viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobileMenu" class="hidden border-t border-white/40 bg-white/90 backdrop-blur-xl lg:hidden">
+      <div class="space-y-1 px-6 py-4">
+        <a href="#" class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">Home</a>
+        <a href="about.html" class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">About</a>
+        <a href="products.html" class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">Products</a>
+        <a href="contact.html" class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">Contact</a>
+        <a href="#contact" class="mt-2 block rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-4 py-3 text-center text-sm font-600 text-white shadow-glow">Request a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============== HERO ============== -->
+    <section class="relative overflow-hidden">
+      <!-- Full-bleed background image -->
+      <div class="absolute inset-0 z-0">
+        <img src="assets/1707.jpg" alt="" class="h-full w-full object-cover object-center" loading="eager" />
+        <div class="absolute inset-0 bg-gradient-to-b from-ink-900/72 via-brand-900/50 to-white"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-ink-900/35 via-transparent to-transparent"></div>
+      </div>
+
+      <div class="orb orb-ambient -left-24 -top-24 h-96 w-96 bg-brand-500/20" data-speed="0.12"></div>
+      <div class="orb orb-ambient-alt right-0 top-10 h-80 w-80 bg-sky2-400/15" data-speed="0.22"></div>
+      <div class="particle-field"></div>
+      <div class="grid-texture pointer-events-none absolute inset-0 opacity-30"></div>
+
+      <div class="relative z-10 mx-auto max-w-7xl px-6 py-28 lg:px-8 lg:py-40">
+        <div class="grid items-center gap-12 lg:grid-cols-2">
+
+          <!-- Left: text content -->
+          <div>
+            <span class="reveal d1 glass-dark inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-600 uppercase tracking-label text-white">
+              <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-sky2-400"></span>
+              Global Sugar Trading · B2B
+            </span>
+
+            <h1 class="reveal d2 mt-7 font-display text-5xl font-500 leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+              Sugar supply,<br class="hidden sm:block" />
+              <span class="gradient-animated-hero">simplified.</span>
+            </h1>
+
+            <p class="reveal d3 mt-6 max-w-xl text-lg leading-relaxed text-white/90">
+              From raw to refined consistent quality, dependable delivery, competitive terms.
+            </p>
+
+            <div class="reveal d4 mt-10 flex flex-col gap-3 sm:flex-row">
+              <a href="#contact" class="magnetic pulse-cta glossy sheen group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-7 py-3.5 text-sm font-600 text-white shadow-glow transition hover:shadow-lift sm:w-auto">
+                <span class="relative">Request a Quote</span>
+                <svg viewBox="0 0 20 20" class="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+              </a>
+              <a href="#products" class="glass-dark inline-flex w-full items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-600 text-white transition hover:text-sky2-400 hover:border-sky2-400/60 sm:w-auto">
+                <svg viewBox="0 0 20 20" class="relative h-4 w-4" fill="currentColor"><path d="M10 2.5a.9.9 0 0 1 .9.9v7.3l2.4-2.4 1.3 1.3L10 14.2 5.4 9.6l1.3-1.3 2.4 2.4V3.4a.9.9 0 0 1 .9-.9ZM4 15.6h12v1.9H4v-1.9Z"/></svg>
+                <span class="relative">Download Specs</span>
+              </a>
+            </div>
+
+            <!-- floating glossy product chips -->
+            <div class="reveal d5 mt-12 flex flex-wrap gap-3">
+              <span class="chip-hero float-slow rounded-2xl px-4 py-2">ICUMSA 45</span>
+              <span class="chip-hero float-slower rounded-2xl px-4 py-2">VHP Raw</span>
+              <span class="chip-hero float-slow rounded-2xl px-4 py-2">S-30 Crystal</span>
+              <span class="chip-hero float-slower rounded-2xl px-4 py-2">65-70° Brix</span>
+              <span class="chip-hero float-slow rounded-2xl px-4 py-2">6x-12x Icing</span>
+            </div>
+          </div>
+
+          <!-- Right: floating product showcase card (desktop only) -->
+          <div class="reveal d3 hidden lg:block">
+            <div class="card-tilt relative">
+              <div class="ring-gradient overflow-hidden rounded-3xl shadow-lift">
+                <div class="relative">
+                  <img src="assets/24306.jpg" alt="Premium refined white sugar on conveyor belt" class="h-80 w-full object-cover transition-transform duration-700 hover:scale-105" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-ink-900/70 via-ink-900/15 to-transparent"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-6">
+                    <p class="text-xs font-600 uppercase tracking-label text-sky2-400">Premium Grade</p>
+                    <p class="mt-1 font-display text-xl font-600 text-white">ICUMSA 45 Refined White</p>
+                    <p class="mt-0.5 text-sm text-white/85">Food &amp; beverage ready · Spec-certified</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Floating stat pills anchored around the card -->
+              <div class="glass glossy float-slow absolute -right-6 top-6 rounded-2xl px-4 py-3 shadow-lift">
+                <p class="text-xs text-ink-400">Inspection</p>
+                <p class="font-display text-sm font-600 text-brand-600">SGS Verified</p>
+              </div>
+              <div class="glass glossy float-slower absolute -left-6 bottom-16 rounded-2xl px-4 py-3 shadow-lift">
+                <p class="text-xs text-ink-400">Origins</p>
+                <p class="font-display text-sm font-600 text-brand-600">4 Countries</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-36 bg-gradient-to-t from-white to-transparent"></div>
+    </section>
+
+    <!-- ============== TRUST BAR ============== -->
+    <section class="relative -mt-8 px-6 lg:px-8">
+      <div class="glass glossy mx-auto max-w-7xl rounded-3xl px-6 py-8">
+        <div class="stagger relative grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
+          <div class="flex items-center gap-3">
+            <span class="trust-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/></svg></span>
+            <span class="text-sm font-500 text-ink-700">Multi-origin sourcing</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="trust-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 4 6v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="text-sm font-500 text-ink-700">SGS / Bureau Veritas inspection</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="trust-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10" stroke-linecap="round"/><circle cx="18" cy="17" r="2"/></svg></span>
+            <span class="text-sm font-500 text-ink-700">Flexible Incoterms</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="trust-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 3h7l4 4v14H7V3Z"/><path d="M14 3v4h4M9.5 13h5M9.5 16.5h5" stroke-linecap="round"/></svg></span>
+            <span class="text-sm font-500 text-ink-700">Documentation-ready</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="trust-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 8h11v8H2zM13 11h4l3 3v2h-7" stroke-linejoin="round"/><circle cx="6" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg></span>
+            <span class="text-sm font-500 text-ink-700">End-to-end logistics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== INTRO ============== -->
+    <section id="about" class="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <div class="orb orb-ambient left-1/4 top-0 h-72 w-72 bg-sky-100"></div>
+      <div class="relative grid items-center gap-14 lg:grid-cols-2">
+
+        <!-- Left: image -->
+        <div class="reveal-left">
+          <div class="card-tilt relative overflow-hidden rounded-3xl shadow-lift">
+            <img src="assets/2151905141.jpg" alt="Sugar factory operations with raw sugar" class="h-[420px] w-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-900/55 via-transparent to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <div class="glass inline-flex items-center gap-2.5 rounded-full px-4 py-2">
+                <span class="h-2 w-2 animate-pulse rounded-full bg-sky2-500"></span>
+                <span class="text-xs font-600 text-ink-700">Multi-origin sourcing operations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: text + mini-stats -->
+        <div class="reveal-right">
+          <p class="section-label text-xs font-600 uppercase tracking-label text-brand-500">Who we are</p>
+          <p class="mt-6 font-display text-2xl font-400 leading-relaxed text-ink-900 sm:text-3xl sm:leading-relaxed">
+            Falcon Diamond specializes solely in sugar connecting refineries, mills, and industrial buyers with reliable, specification-driven supply across <span class="gradient-animated font-500">MENA, South Asia, and East Africa</span>, with global sourcing from Brazil, India, Thailand, and the EU.
+          </p>
+          <div class="mt-10 grid grid-cols-2 gap-4">
+            <div class="glass glossy rounded-2xl p-5 text-center">
+              <p class="font-display text-3xl font-600 text-brand-600">100%</p>
+              <p class="mt-1 text-xs text-ink-400">Sugar-focused trading</p>
+            </div>
+            <div class="glass glossy rounded-2xl p-5 text-center">
+              <p class="font-display text-3xl font-600 text-brand-600">4+</p>
+              <p class="mt-1 text-xs text-ink-400">Global origins</p>
+            </div>
+            <div class="glass glossy rounded-2xl p-5 text-center">
+              <p class="font-display text-3xl font-600 text-brand-600">3</p>
+              <p class="mt-1 text-xs text-ink-400">Key export regions</p>
+            </div>
+            <div class="glass glossy rounded-2xl p-5 text-center">
+              <p class="font-display text-3xl font-600 text-brand-600">B2B</p>
+              <p class="mt-1 text-xs text-ink-400">Exclusive focus</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============== VALUE PROPS ============== -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-50/50 to-white py-24">
+      <div class="orb right-0 top-20 h-96 w-96 bg-brand-100"></div>
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="reveal-left max-w-2xl">
+          <p class="section-label text-xs font-600 uppercase tracking-label text-brand-500">Why Falcon Diamond</p>
+          <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900">Built for dependable trade.</h2>
+        </div>
+
+        <div class="stagger mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-7">
+            <span class="icon-badge glossy flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12h4l2 6 4-14 2 8h6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="mt-5 font-display text-xl font-600 text-ink-900">Reliable Supply</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-500">Diversified origins and committed volumes keep your pipeline steady, season after season.</p>
+          </div>
+          <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-7">
+            <span class="icon-badge glossy flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 3 2.4 5 5.6.6-4 4 1 5.4L12 20l-5 2 1-5.4-4-4 5.6-.6L12 3Z" stroke-linejoin="round"/></svg></span>
+            <h3 class="mt-5 font-display text-xl font-600 text-ink-900">Quality First</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-500">Specification-driven grades with third-party inspection available at every shipment.</p>
+          </div>
+          <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-7">
+            <span class="icon-badge glossy flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 8h11v8H2zM13 11h4l3 3v2h-7" stroke-linejoin="round"/><circle cx="6" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg></span>
+            <h3 class="mt-5 font-display text-xl font-600 text-ink-900">Logistics That Work</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-500">Bulk and containerized shipping coordinated end-to-end from mill to your facility.</p>
+          </div>
+          <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-7">
+            <span class="icon-badge glossy flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4" stroke-linecap="round"/></svg></span>
+            <h3 class="mt-5 font-display text-xl font-600 text-ink-900">Finance-Friendly</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-500">Flexible terms, LC support, and indexed pricing structured to fit your procurement cycle.</p>
+          </div>
+          <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-7">
+            <span class="icon-badge glossy flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/></svg></span>
+            <h3 class="mt-5 font-display text-xl font-600 text-ink-900">Sector Coverage</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink-500">Serving refineries, beverage, confectionery, dairy, and industrial buyers worldwide.</p>
+          </div>
+          <div class="glossy sheen relative flex flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 p-7 text-white shadow-glow">
+            <div class="orb -right-10 -top-10 h-40 w-40 bg-sky2-400/40"></div>
+            <div class="relative">
+              <h3 class="font-display text-xl font-600">Let's talk volumes.</h3>
+              <p class="mt-2 text-sm leading-relaxed text-sky-100">Share your grade, destination, and cadence we'll come back with terms.</p>
+            </div>
+            <a href="#contact" class="relative mt-6 inline-flex items-center gap-2 text-sm font-600 text-white">
+              Get a tailored offer
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== ACTIVE TRADING DESK ============== -->
+    <section class="relative overflow-hidden py-28">
+      <div class="absolute inset-0 z-0">
+        <img src="assets/121532.jpg" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-r from-ink-900/94 via-ink-900/82 to-ink-900/55"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-ink-900/30 to-ink-900/60"></div>
+      </div>
+      <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid items-center gap-14 lg:grid-cols-2">
+
+          <div class="reveal-left">
+            <p class="section-label-dark">Active Desk</p>
+            <h2 class="mt-4 font-display text-4xl font-500 tracking-tight text-white sm:text-5xl">An active desk.<br />Every trading day.</h2>
+            <p class="mt-5 text-base leading-relaxed text-white/80">Our trading desk monitors global sugar markets daily tracking ICUMSA spreads, freight rates, and origin availability to give you the most competitive pricing window at every order.</p>
+            <div class="mt-10 grid grid-cols-3 gap-4">
+              <div class="glass-dark rounded-2xl p-5 text-center">
+                <p class="font-display text-3xl font-600 text-white">5+</p>
+                <p class="mt-1 text-xs text-white/65">Grades traded</p>
+              </div>
+              <div class="glass-dark rounded-2xl p-5 text-center">
+                <p class="font-display text-3xl font-600 text-white">4</p>
+                <p class="mt-1 text-xs text-white/65">Source countries</p>
+              </div>
+              <div class="glass-dark rounded-2xl p-5 text-center">
+                <p class="font-display text-3xl font-600 text-white">3</p>
+                <p class="mt-1 text-xs text-white/65">Export regions</p>
+              </div>
+            </div>
+            <a href="#contact" class="magnetic mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-7 py-3.5 text-sm font-600 text-white shadow-glow transition hover:shadow-lift">
+              Connect with our desk
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+          </div>
+
+          <div class="reveal-right hidden lg:block">
+            <div class="card-tilt relative overflow-hidden rounded-3xl shadow-lift">
+              <img src="assets/132317.jpg" alt="Falcon Diamond presenting trading terms to buyers" class="h-[460px] w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/70 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <p class="font-display text-lg font-600 text-white">Structured Buyer Briefings</p>
+                <p class="mt-1 text-sm text-white/75">Grade selection · Volume terms · Documentation</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== FEATURED PRODUCTS ============== -->
+    <section id="products" class="relative overflow-hidden py-24">
+      <!-- Section background image -->
+      <div class="absolute inset-0 z-0">
+        <img src="assets/29222.jpg" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white"></div>
+      </div>
+
+      <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="reveal-left flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div class="max-w-2xl">
+            <p class="section-label text-xs font-600 uppercase tracking-label text-brand-500">Products & Specs</p>
+            <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900">Featured grades.</h2>
+          </div>
+          <a href="#contact" class="text-sm font-600 text-brand-600 transition hover:text-brand-700">View full specification sheet →</a>
+        </div>
+
+        <div class="stagger mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+          <!-- Raw Sugar -->
+          <article class="card-tilt glass glossy ring-gradient group relative overflow-hidden rounded-3xl">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/2151905141.jpg" alt="Raw VHP sugar" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/80"></div>
+              <span class="glass absolute left-4 top-4 inline-flex rounded-full px-3 py-1 text-xs font-600 uppercase tracking-wider text-brand-600">Raw / Refining</span>
+            </div>
+            <div class="relative p-6">
+              <h3 class="font-display text-2xl font-600 text-ink-900">Raw Sugar</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">For refining operations seeking consistent feedstock.</p>
+              <p class="mt-4 text-sm font-600 text-brand-600">VHP / V-VHP</p>
+              <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-ink-700 transition group-hover:text-brand-600">Request spec sheet<svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Refined White -->
+          <article class="card-tilt glass glossy ring-gradient group relative overflow-hidden rounded-3xl">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/24306.jpg" alt="Refined white sugar ICUMSA 45" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/80"></div>
+              <span class="glass absolute left-4 top-4 inline-flex rounded-full px-3 py-1 text-xs font-600 uppercase tracking-wider text-brand-600">Refined White</span>
+            </div>
+            <div class="relative p-6">
+              <h3 class="font-display text-2xl font-600 text-ink-900">Refined White</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">Bright, consistent crystal for food and beverage use.</p>
+              <p class="mt-4 text-sm font-600 text-brand-600">ICUMSA 45-150</p>
+              <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-ink-700 transition group-hover:text-brand-600">Request spec sheet<svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg></a>
+            </div>
+          </article>
+
+          <!-- S-30 Crystal -->
+          <article class="card-tilt glass glossy ring-gradient group relative overflow-hidden rounded-3xl">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/1707.jpg" alt="S-30 crystal sugar in industrial vats" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/80"></div>
+              <span class="glass absolute left-4 top-4 inline-flex rounded-full px-3 py-1 text-xs font-600 uppercase tracking-wider text-brand-600">Crystal · India</span>
+            </div>
+            <div class="relative p-6">
+              <h3 class="font-display text-2xl font-600 text-ink-900">S-30 Crystal</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">Indian-origin grade with uniform grain and clarity.</p>
+              <p class="mt-4 text-sm font-600 text-brand-600">S-30 Grade</p>
+              <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-ink-700 transition group-hover:text-brand-600">Request spec sheet<svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Liquid Sugar -->
+          <article class="card-tilt glass glossy ring-gradient group relative overflow-hidden rounded-3xl">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/1707(1).jpg" alt="Liquid sugar processing vats" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/80"></div>
+              <span class="glass absolute left-4 top-4 inline-flex rounded-full px-3 py-1 text-xs font-600 uppercase tracking-wider text-brand-600">Liquid</span>
+            </div>
+            <div class="relative p-6">
+              <h3 class="font-display text-2xl font-600 text-ink-900">Liquid Sugar</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">Ready-to-dose syrup for beverage and processing lines.</p>
+              <p class="mt-4 text-sm font-600 text-brand-600">65-70° Brix</p>
+              <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-ink-700 transition group-hover:text-brand-600">Request spec sheet<svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Icing Sugar -->
+          <article class="card-tilt glass glossy ring-gradient group relative overflow-hidden rounded-3xl">
+            <div class="relative h-44 overflow-hidden">
+              <img src="assets/29222.jpg" alt="Icing sugar factory processing" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/80"></div>
+              <span class="glass absolute left-4 top-4 inline-flex rounded-full px-3 py-1 text-xs font-600 uppercase tracking-wider text-brand-600">Icing</span>
+            </div>
+            <div class="relative p-6">
+              <h3 class="font-display text-2xl font-600 text-ink-900">Icing Sugar</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-500">Finely milled powder for bakery and confectionery.</p>
+              <p class="mt-4 text-sm font-600 text-brand-600">6x-12x</p>
+              <a href="#contact" class="mt-4 inline-flex items-center gap-1.5 text-sm font-600 text-ink-700 transition group-hover:text-brand-600">Request spec sheet<svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg></a>
+            </div>
+          </article>
+
+          <!-- Custom spec CTA card -->
+          <article class="glossy sheen relative flex flex-col justify-center overflow-hidden rounded-3xl bg-gradient-to-br from-ink-900 to-brand-700 p-7 text-white shadow-lift">
+            <div class="orb -right-8 -top-8 h-40 w-40 bg-sky2-400/40"></div>
+            <h3 class="relative font-display text-xl font-600">Need a custom spec?</h3>
+            <p class="relative mt-2 text-sm leading-relaxed text-sky-100">Tell us your ICUMSA, polarization, moisture, and packaging requirements we'll match origin to need.</p>
+            <a href="#contact" class="relative mt-5 inline-flex items-center gap-2 text-sm font-600 text-white">Talk to trading<svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg></a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CALLOUT BANNER ============== -->
+    <section class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="reveal-scale relative overflow-hidden rounded-[2rem] shadow-lift">
+        <!-- Background image -->
+        <div class="absolute inset-0 z-0">
+          <img src="assets/1707(1).jpg" alt="" class="h-full w-full object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-br from-ink-900/88 via-brand-700/82 to-brand-600/88"></div>
+        </div>
+        <div class="glossy sheen relative z-10 px-8 py-12 lg:px-14 lg:py-14">
+        <div class="orb -left-10 top-0 h-72 w-72 bg-sky2-500/40"></div>
+        <div class="orb right-0 -bottom-16 h-72 w-72 bg-brand-300/40"></div>
+        <div class="grid-texture pointer-events-none absolute inset-0 opacity-30"></div>
+        <div class="relative flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+          <div class="max-w-2xl">
+            <p class="text-xs font-600 uppercase tracking-label text-sky-200">Recurring needs?</p>
+            <p class="mt-3 font-display text-2xl font-500 leading-snug text-white sm:text-3xl">Set up monthly / quarterly call-offs with price indexation and fixed windows.</p>
+          </div>
+          <a href="#contact" class="glass glossy inline-flex shrink-0 items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-600 text-ink-900 transition hover:text-brand-600">
+            <span class="relative">Set up a contract</span>
+            <svg viewBox="0 0 20 20" class="relative h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+          </a>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== SOLUTIONS ============== -->
+    <section id="solutions" class="relative overflow-hidden bg-gradient-to-b from-white via-brand-50/50 to-white py-24">
+      <div class="orb orb-ambient-alt right-0 top-20 h-80 w-80 bg-brand-100/60"></div>
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid items-center gap-14 lg:grid-cols-2">
+
+          <!-- Left: heading + solution cards -->
+          <div>
+            <div class="reveal-left">
+              <p class="section-label text-xs font-600 uppercase tracking-label text-brand-500">Solutions</p>
+              <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900">Beyond the cargo.</h2>
+              <p class="mt-4 text-base leading-relaxed text-ink-500">An integrated desk that handles sourcing, compliance, shipping, and finance so you can focus on production.</p>
+            </div>
+
+            <div class="stagger mt-10 grid gap-4 sm:grid-cols-2">
+              <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-6">
+                <span class="icon-badge glossy flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5" stroke-linecap="round"/></svg></span>
+                <h3 class="mt-4 font-display text-lg font-600 text-ink-900">Sourcing & Procurement</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-500">Origin selection matched to your grade and price targets.</p>
+              </div>
+              <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-6">
+                <span class="icon-badge glossy flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3 4 6v6c0 5 3.4 7.6 8 9 4.6-1.4 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <h3 class="mt-4 font-display text-lg font-600 text-ink-900">Quality & Compliance</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-500">SGS / Bureau Veritas inspection and full documentation.</p>
+              </div>
+              <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-6">
+                <span class="icon-badge glossy flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 8h11v8H2zM13 11h4l3 3v2h-7" stroke-linejoin="round"/><circle cx="6" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg></span>
+                <h3 class="mt-4 font-display text-lg font-600 text-ink-900">Logistics & Shipping</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-500">Bulk vessels and containers with flexible Incoterms.</p>
+              </div>
+              <div class="card-tilt glass glossy ring-gradient group rounded-3xl p-6">
+                <span class="icon-badge glossy flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-glow"><svg viewBox="0 0 24 24" class="relative h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4" stroke-linecap="round"/></svg></span>
+                <h3 class="mt-4 font-display text-lg font-600 text-ink-900">Trade Finance Support</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-500">LC structures and indexed pricing for your cycle.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: business team image -->
+          <div class="reveal-right">
+            <div class="card-tilt relative overflow-hidden rounded-3xl shadow-lift">
+              <img src="assets/21499.jpg" alt="Falcon Diamond trading team reviewing market data" class="h-[480px] w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-transparent to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <p class="font-display text-lg font-600 text-white">End-to-end trading desk</p>
+                <p class="mt-1 text-sm text-white/85">Sourcing · Compliance · Logistics · Finance</p>
+              </div>
+              <!-- Floating badge -->
+              <div class="glass float-slow absolute right-5 top-5 rounded-2xl px-4 py-3 shadow-lift">
+                <p class="text-xs text-ink-400">Incoterms</p>
+                <p class="font-display text-sm font-600 text-brand-600">2020 Ready</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== MARKET INTELLIGENCE ============== -->
+    <section class="relative overflow-hidden py-28">
+      <div class="absolute inset-0 z-0">
+        <img src="assets/14898.jpg" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-b from-ink-900/92 via-ink-900/88 to-ink-900/94"></div>
+      </div>
+      <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid items-center gap-14 lg:grid-cols-2">
+
+          <div class="reveal-left">
+            <div class="card-tilt relative overflow-hidden rounded-3xl shadow-lift">
+              <img src="assets/281269.jpg" alt="Market analysts reviewing sugar price data" class="h-[460px] w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-ink-900/72 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6">
+                <p class="font-display text-lg font-600 text-white">Live Price Monitoring</p>
+                <p class="mt-1 text-sm text-white/75">ICUMSA spreads · Freight rates · Origin availability</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal-right">
+            <p class="section-label-dark">Market Intelligence</p>
+            <h2 class="mt-4 font-display text-4xl font-500 tracking-tight text-white">Pricing clarity,<br />every week.</h2>
+            <p class="mt-5 text-base leading-relaxed text-white/80">We track global sugar price movements, freight signals, and origin spreads so you never negotiate blind. Our weekly market brief gives buyers and refineries the context to make confident procurement decisions.</p>
+            <div class="mt-8 space-y-3">
+              <div class="glass-dark flex items-center gap-4 rounded-2xl px-5 py-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-600/60 text-sky2-400">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12h4l2 6 4-14 2 8h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div>
+                  <p class="text-sm font-600 text-white">ICUMSA Spread Tracking</p>
+                  <p class="text-xs text-white/65">Grade 45 to 150 weekly differential</p>
+                </div>
+              </div>
+              <div class="glass-dark flex items-center gap-4 rounded-2xl px-5 py-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-600/60 text-sky2-400">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 8h11v8H2zM13 11h4l3 3v2h-7" stroke-linejoin="round"/><circle cx="6" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg>
+                </span>
+                <div>
+                  <p class="text-sm font-600 text-white">Freight Signal Reports</p>
+                  <p class="text-xs text-white/65">Bulk and container route updates</p>
+                </div>
+              </div>
+              <div class="glass-dark flex items-center gap-4 rounded-2xl px-5 py-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-600/60 text-sky2-400">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/></svg>
+                </span>
+                <div>
+                  <p class="text-sm font-600 text-white">Origin Movement Alerts</p>
+                  <p class="text-xs text-white/65">Brazil, India, Thailand, EU availability</p>
+                </div>
+              </div>
+            </div>
+            <a href="mailto:hello@faldia.com" class="magnetic mt-8 inline-flex items-center gap-2 rounded-xl border border-white/30 px-7 py-3.5 text-sm font-600 text-white transition hover:bg-white/10">
+              Get the weekly brief
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== MARKETS ============== -->
+    <section id="markets" class="relative overflow-hidden py-24">
+      <!-- Background trading chart image -->
+      <div class="absolute inset-0 z-0">
+        <img src="assets/124663.jpg" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-b from-white via-white/96 to-white"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/88 to-white/72"></div>
+      </div>
+      <div class="orb orb-ambient left-0 top-1/3 h-96 w-96 bg-sky-100/60"></div>
+      <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid items-center gap-14 lg:grid-cols-2">
+          <div class="reveal-left">
+            <p class="section-label text-xs font-600 uppercase tracking-label text-brand-500">Markets & Origins</p>
+            <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900">A global trade lane.</h2>
+            <p class="mt-5 text-base leading-relaxed text-ink-500">We deliver into <span class="font-600 text-ink-700">MENA, South Asia, and East Africa</span>, drawing on established supply relationships across leading producing regions. That reach lets us balance origin, timing, and price for every shipment.</p>
+            <div class="mt-8">
+              <p class="text-xs font-600 uppercase tracking-label text-ink-400">Sourcing origins</p>
+              <div class="stagger mt-4 flex flex-wrap gap-2.5">
+                <span class="glass glossy rounded-full px-4 py-2 text-sm font-500 text-ink-700">🇧🇷 Brazil</span>
+                <span class="glass glossy rounded-full px-4 py-2 text-sm font-500 text-ink-700">🇮🇳 India</span>
+                <span class="glass glossy rounded-full px-4 py-2 text-sm font-500 text-ink-700">🇹🇭 Thailand</span>
+                <span class="glass glossy rounded-full px-4 py-2 text-sm font-500 text-ink-700">🇪🇺 European Union</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stagger grid gap-5 sm:grid-cols-3">
+            <div class="glass glossy ring-gradient rounded-3xl p-6 text-center transition hover:-translate-y-1.5 hover:shadow-lift">
+              <p class="font-display text-2xl font-600 text-brand-600">MENA</p>
+              <p class="mt-1 text-xs text-ink-400">Middle East & North Africa</p>
+            </div>
+            <div class="glass glossy ring-gradient rounded-3xl p-6 text-center transition hover:-translate-y-1.5 hover:shadow-lift">
+              <p class="font-display text-2xl font-600 text-brand-600">South Asia</p>
+              <p class="mt-1 text-xs text-ink-400">Subcontinent buyers</p>
+            </div>
+            <div class="glass glossy ring-gradient rounded-3xl p-6 text-center transition hover:-translate-y-1.5 hover:shadow-lift">
+              <p class="font-display text-2xl font-600 text-brand-600">E. Africa</p>
+              <p class="mt-1 text-xs text-ink-400">Coastal & inland markets</p>
+            </div>
+            <div class="glossy sheen relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 p-6 text-white shadow-glow sm:col-span-3">
+              <div class="orb -right-8 -top-8 h-40 w-40 bg-sky2-400/40"></div>
+              <div class="relative flex items-center justify-between">
+                <div>
+                  <p class="font-display text-2xl font-600"><span class="count-num" data-count="4">4</span> origins</p>
+                  <p class="mt-1 text-sm text-sky-100">balanced for price and timing</p>
+                </div>
+                <span class="glass flex h-12 w-12 items-center justify-center rounded-2xl"><svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18Z"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== TEAM GALLERY ============== -->
+    <section class="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <div class="reveal-up text-center">
+        <p class="section-label justify-center">Inside Falcon Diamond</p>
+        <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900">The team behind the trade.</h2>
+        <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-ink-500">Experienced professionals tracking markets, building supply chains, and structuring deals that work.</p>
+      </div>
+      <div class="stagger mt-12 grid gap-5 sm:grid-cols-2">
+        <div class="card-tilt group relative overflow-hidden rounded-3xl shadow-lift">
+          <img src="assets/90929.jpg" alt="Annual trading performance review at Falcon Diamond" class="h-80 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/78 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-xl font-600 text-white">Annual Performance Review</p>
+            <p class="mt-1 text-sm text-white/70">Data-driven procurement decisions</p>
+          </div>
+        </div>
+        <div class="card-tilt group relative overflow-hidden rounded-3xl shadow-lift">
+          <img src="assets/115894.jpg" alt="Falcon Diamond team market analysis session" class="h-80 w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-900/78 via-transparent to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-xl font-600 text-white">Market Analysis Sessions</p>
+            <p class="mt-1 text-sm text-white/70">Collaborative insights and trade strategy</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== CTA ============== -->
+    <section id="contact" class="relative mx-auto max-w-7xl px-6 py-28 lg:px-8">
+      <div class="reveal-scale glossy sheen relative mx-auto max-w-4xl overflow-hidden rounded-[2.5rem] px-8 py-16 text-center shadow-lift lg:px-16">
+        <!-- Cinematic photo background -->
+        <div class="absolute inset-0 z-0">
+          <img src="assets/2151953961.jpg" alt="" class="h-full w-full object-cover object-center" />
+          <div class="absolute inset-0 bg-gradient-to-br from-ink-900/90 via-brand-700/82 to-ink-900/92"></div>
+        </div>
+        <div class="orb -left-10 -top-10 h-80 w-80 bg-sky2-500/30" style="z-index:10"></div>
+        <div class="orb -right-10 -bottom-10 h-80 w-80 bg-brand-300/30" style="z-index:10"></div>
+        <div class="grid-texture pointer-events-none absolute inset-0 z-10 opacity-25"></div>
+        <div class="relative z-20">
+          <h2 class="font-display text-4xl font-500 tracking-tight text-white sm:text-5xl">Start your order today.</h2>
+          <p class="mx-auto mt-5 max-w-lg text-lg leading-relaxed text-sky-100">Tell us the grade, destination, and volume. We'll respond with terms and a documentation-ready offer.</p>
+          <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href="mailto:trading@faldia.com" class="magnetic glass glossy group inline-flex w-full items-center justify-center gap-2 rounded-xl px-8 py-4 text-sm font-600 text-ink-900 transition hover:text-brand-600 sm:w-auto">
+              <span class="relative">Request a Quote</span>
+              <svg viewBox="0 0 20 20" class="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+            <a href="mailto:hello@faldia.com" class="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/40 px-8 py-4 text-sm font-600 text-white transition hover:bg-white/10 sm:w-auto">Email the team</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <!-- ══════════════════════ FOOTER ══════════════════════ -->
+  <footer class="relative overflow-hidden border-t border-white/40 bg-gradient-to-b from-brand-50/70 via-sky-50/40 to-white">
+    <div class="orb orb-ambient right-10 -top-10 h-80 w-80 bg-brand-100"></div>
+    <div class="orb orb-ambient-alt left-0 bottom-0 h-72 w-72 bg-sky-100"></div>
+
+    <div class="relative mx-auto max-w-7xl px-6 pt-16 lg:px-8">
+
+      <div class="reveal-up glass glossy sheen relative overflow-hidden rounded-[2rem] px-7 py-9 lg:px-12 lg:py-10">
+        <div class="relative grid items-center gap-8 lg:grid-cols-2">
+          <div>
+            <p class="text-xs font-600 uppercase tracking-label text-brand-500">Market intelligence</p>
+            <h3 class="mt-2 font-display text-2xl font-500 leading-snug text-ink-900 sm:text-3xl">Get our weekly sugar market brief.</h3>
+            <p class="mt-2 text-sm text-ink-500">Origin movements, ICUMSA spreads, freight signals straight to your inbox.</p>
+          </div>
+          <div class="flex w-full flex-col gap-3 sm:flex-row sm:justify-end">
+            <div class="newsletter-input glass flex w-full items-center gap-2 rounded-xl px-4 py-1 sm:max-w-xs transition">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-ink-400" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <input type="email" placeholder="you@company.com" class="w-full bg-transparent py-2.5 text-sm text-ink-700 placeholder:text-ink-400 focus:outline-none" />
+            </div>
+            <a href="mailto:hello@faldia.com" class="magnetic glossy sheen inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-6 py-3 text-sm font-600 text-white shadow-glow transition hover:shadow-lift">
+              <span class="relative">Subscribe</span>
+              <svg viewBox="0 0 20 20" class="relative h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <a href="index.html" class="flex items-center">
+            <img src="assets/logo.png" alt="Falcon Diamond" class="h-10 w-auto" />
+          </a>
+          <p class="mt-5 max-w-sm font-display text-xl font-400 leading-snug text-ink-700">Precision Sugar Trading. <span class="bg-gradient-to-r from-brand-600 to-sky2-500 bg-clip-text text-transparent">Global Reach.</span> Assured Quality.</p>
+          <div class="mt-6 space-y-2.5">
+            <a href="mailto:hello@faldia.com" class="group flex items-center gap-3 text-sm text-ink-500 transition hover:text-brand-600">
+              <span class="glass glossy flex h-9 w-9 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              hello@faldia.com
+            </a>
+            <a href="mailto:trading@faldia.com" class="group flex items-center gap-3 text-sm text-ink-500 transition hover:text-brand-600">
+              <span class="glass glossy flex h-9 w-9 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              trading@faldia.com
+            </a>
+          </div>
+          <div class="mt-7 flex gap-2.5">
+            <a href="#" aria-label="LinkedIn" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#0a66c2,#004182);box-shadow:0 6px 18px -4px rgba(10,102,194,.5)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.2 8.2h4.6V24H.2V8.2Zm7.5 0h4.4v2.16h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v9.02h-4.6v-8c0-1.9-.03-4.36-2.66-4.36-2.66 0-3.07 2.08-3.07 4.22V24H7.7V8.2Z"/></svg></a>
+            <a href="#" aria-label="X" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#14171a,#2c2c2c);box-shadow:0 6px 18px -4px rgba(0,0,0,.38)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M18.2 2H21l-6.6 7.5L22 22h-6.1l-4.8-6.3L5.6 22H2.8l7-8L2 2h6.2l4.3 5.7L18.2 2Zm-2.1 18h1.7L7.9 3.7H6.1L16.1 20Z"/></svg></a>
+            <a href="#" aria-label="WhatsApp" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 6px 18px -4px rgba(37,211,102,.42)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.9 2.6 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 5 4.3 1.8.7 2.5.8 3.4.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.3-.2Z"/></svg></a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Company</p>
+          <ul class="mt-4 space-y-3 text-sm text-ink-500">
+            <li><a href="index.html" class="font-600 text-brand-600">Home</a></li>
+            <li><a href="about.html" class="transition hover:text-brand-600 hover:pl-1">About</a></li>
+            <li><a href="products.html" class="transition hover:text-brand-600 hover:pl-1">Products</a></li>
+            <li><a href="contact.html" class="transition hover:text-brand-600 hover:pl-1">Contact</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Products</p>
+          <ul class="mt-4 space-y-3 text-sm text-ink-500">
+            <li><a href="products.html#raw-sugar" class="transition hover:text-brand-600 hover:pl-1">Raw Sugar</a></li>
+            <li><a href="products.html#refined-white" class="transition hover:text-brand-600 hover:pl-1">Refined White</a></li>
+            <li><a href="products.html#indian-s30" class="transition hover:text-brand-600 hover:pl-1">S-30 Crystal</a></li>
+            <li><a href="products.html#liquid-sugar" class="transition hover:text-brand-600 hover:pl-1">Liquid &amp; Icing</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-3">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Assurance</p>
+          <ul class="mt-4 space-y-3">
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SGS Verified</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Bureau Veritas</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Incoterms 2020</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Doc Package</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/60 py-8 sm:flex-row">
+        <p class="text-sm text-ink-400">© 2026 Falcon Diamond · faldia.com</p>
+        <div class="flex gap-6 text-sm text-ink-400">
+          <a href="#" class="transition hover:text-brand-600">Privacy</a>
+          <a href="#" class="transition hover:text-brand-600">Terms</a>
+          <a href="#" class="transition hover:text-brand-600">Incoterms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

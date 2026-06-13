@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Falcon Diamond</title>
+  <meta name="description" content="Get in touch with Falcon Diamond's trading desk. Request a quote, discuss specifications, or start a bulk sugar supply conversation we respond within 4 hours." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink: { 900:'#0f1b2d', 700:'#27374d', 500:'#52617a', 400:'#71809b' },
+            brand: { 50:'#eef4fb',100:'#dbe7f6',200:'#bcd2ee',300:'#8fb6e3',500:'#2563a8',600:'#1d4f8c',700:'#173f70' },
+            sky2:  { 400:'#38bdf8', 500:'#0ea5e9' },
+          },
+          boxShadow: {
+            soft: '0 1px 2px rgba(15,27,45,.04), 0 8px 24px -12px rgba(15,27,45,.12)',
+            lift: '0 2px 6px rgba(15,27,45,.06), 0 28px 56px -28px rgba(23,63,112,.28)',
+            glow: '0 10px 40px -12px rgba(37,99,168,.45)',
+          },
+          letterSpacing: { label: '0.18em' },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="contact-styles.css" />
+</head>
+
+<body class="font-sans text-ink-700 bg-white antialiased overflow-x-hidden">
+  <div id="scroll-progress"></div>
+
+  <!-- ============== NAVBAR ============== -->
+  <header class="sticky top-0 z-50 border-b border-white/40 bg-white/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4 lg:px-8">
+      <a href="index.html" class="flex items-center">
+        <img src="assets/logo.png" alt="Falcon Diamond" class="h-9 w-auto" />
+      </a>
+
+      <div class="hidden items-center gap-1 lg:flex">
+        <a href="index.html" class="rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">Home</a>
+        <a href="about.html" class="rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">About</a>
+        <div class="dropdown relative">
+          <button class="flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-500 text-ink-700 transition hover:bg-white/70 hover:text-brand-600">
+            Products
+            <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 text-ink-400" fill="currentColor"><path d="M5.2 7.5 10 12.3l4.8-4.8 1.2 1.2-6 6-6-6 1.2-1.2Z"/></svg>
+          </button>
+          <div class="dropdown-menu absolute left-0 top-full w-64 pt-2">
+            <div class="glass overflow-hidden rounded-2xl p-2">
+              <a href="products.html#raw-sugar"     class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Raw Sugar VHP / V-VHP</a>
+              <a href="products.html#refined-white" class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Refined White ICUMSA 45-150</a>
+              <a href="products.html#indian-s30"    class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">S-30 Crystal (India)</a>
+              <a href="products.html#liquid-sugar"  class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Liquid Sugar 65-70° Brix</a>
+              <a href="products.html#icing-sugar"   class="block rounded-xl px-3 py-2.5 text-sm text-ink-700 transition hover:bg-brand-50 hover:text-brand-600">Icing Sugar 6x-12x</a>
+            </div>
+          </div>
+        </div>
+        <a href="contact.html" class="rounded-lg bg-brand-50 px-3 py-2 text-sm font-600 text-brand-600">Contact</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="#contact-form" class="glossy sheen hidden rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-4 py-2.5 text-sm font-600 text-white shadow-glow transition hover:shadow-lift sm:inline-block">
+          <span class="relative">Request a Quote</span>
+        </a>
+        <button id="menuBtn" class="rounded-lg p-2 text-ink-700 transition hover:bg-white/70 lg:hidden" aria-label="Open menu">
+          <svg id="menuIcon" viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobileMenu" class="hidden border-t border-white/40 bg-white/90 backdrop-blur-xl lg:hidden">
+      <div class="space-y-1 px-6 py-4">
+        <a href="index.html" class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">Home</a>
+        <a href="about.html" class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">About</a>
+        <a href="index.html#products" class="block rounded-lg px-3 py-2.5 text-sm font-500 text-ink-700 hover:bg-brand-50">Products</a>
+        <a href="contact.html" class="block rounded-lg bg-brand-50 px-3 py-2.5 text-sm font-600 text-brand-600">Contact</a>
+        <a href="#contact-form" class="mt-2 block rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-4 py-3 text-center text-sm font-600 text-white shadow-glow">Request a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============== HERO ============== -->
+    <section class="relative overflow-hidden min-h-[72vh] flex items-center">
+      <div class="absolute inset-0 z-0">
+        <img src="assets/Contact/8052.jpg" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(15,27,45,.96) 0%,rgba(23,63,112,.88) 50%,rgba(15,27,45,.82) 100%)"></div>
+      </div>
+      <div class="orb orb-ambient right-10 top-20 h-[500px] w-[500px]" style="background:rgba(56,189,248,.07)"></div>
+      <div class="orb orb-ambient-alt -left-20 bottom-10 h-80 w-80" style="background:rgba(37,99,168,.1)"></div>
+      <div class="particle-field"><div class="particle" style="left:15%;width:3px;height:3px;animation-duration:14s;animation-delay:0s"></div><div class="particle" style="left:35%;width:2px;height:2px;animation-duration:18s;animation-delay:3s"></div><div class="particle" style="left:55%;width:4px;height:4px;animation-duration:12s;animation-delay:6s"></div><div class="particle" style="left:75%;width:2px;height:2px;animation-duration:20s;animation-delay:1s"></div><div class="particle" style="left:88%;width:3px;height:3px;animation-duration:16s;animation-delay:4s"></div></div>
+
+      <div class="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 lg:px-8">
+        <div class="max-w-3xl">
+          <div class="reveal d1">
+            <span class="chip-hero inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs">
+              <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-sky2-400"></span>
+              Trading Desk Live
+            </span>
+          </div>
+          <h1 class="reveal d2 mt-6 font-display text-5xl font-500 leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Let's talk<br /><span class="gradient-animated-hero">sugar trade.</span>
+          </h1>
+          <p class="reveal d3 mt-6 max-w-xl text-lg leading-relaxed text-white" style="text-shadow:0 1px 10px rgba(0,0,0,.5)">
+            Whether you need a spot cargo or a long-term supply framework our desk is ready. Tell us your grade, volume, and destination. We'll come back with a real offer.
+          </p>
+
+          <div class="reveal d4 mt-10 flex flex-wrap gap-4">
+            <div class="about-stat-pill text-center">
+              <p class="font-display text-2xl font-600 text-white">&lt;4h</p>
+              <p class="mt-0.5 text-xs text-white/70">Response Time</p>
+            </div>
+            <div class="about-stat-pill text-center">
+              <p class="font-display text-2xl font-600 text-white">12+</p>
+              <p class="mt-0.5 text-xs text-white/70">Buyer Markets</p>
+            </div>
+            <div class="about-stat-pill text-center">
+              <p class="font-display text-2xl font-600 text-white">Direct</p>
+              <p class="mt-0.5 text-xs text-white/70">Desk Access</p>
+            </div>
+            <div class="about-stat-pill text-center">
+              <p class="font-display text-2xl font-600 text-white">SGS</p>
+              <p class="mt-0.5 text-xs text-white/70">Verified Every Load</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- bottom blend -->
+      <div class="absolute bottom-0 left-0 right-0 h-28 pointer-events-none" style="z-index:5;background:linear-gradient(to bottom,transparent,#fff)"></div>
+    </section>
+
+    <!-- ============== CONTACT FORM + INFO ============== -->
+    <section id="contact-form" class="relative py-24 bg-white">
+      <div class="orb orb-ambient right-0 -top-10 h-96 w-96 bg-brand-50" style="filter:blur(80px);opacity:.7"></div>
+      <div class="orb orb-ambient-alt -left-20 bottom-20 h-80 w-80 bg-sky-50" style="filter:blur(80px);opacity:.6"></div>
+
+      <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid items-start gap-12 lg:grid-cols-5">
+
+          <!-- ── LEFT: FORM (3 cols) ── -->
+          <div class="lg:col-span-3">
+            <div class="reveal-left">
+              <p class="section-label">Send an enquiry</p>
+              <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900 sm:text-5xl">Start the conversation.</h2>
+              <p class="mt-4 text-base leading-relaxed text-ink-500">Fill in your details and trade requirements. Our desk reviews every submission and responds personally no bots, no templates.</p>
+            </div>
+
+            <form id="contactForm" class="reveal-up mt-10 space-y-5" novalidate>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div class="contact-field-wrap">
+                  <label class="contact-label">Full Name <span class="text-sky2-500">*</span></label>
+                  <input type="text" name="name" placeholder="Ahmed Al-Rashid" required class="contact-input" />
+                </div>
+                <div class="contact-field-wrap">
+                  <label class="contact-label">Company Name <span class="text-sky2-500">*</span></label>
+                  <input type="text" name="company" placeholder="Sunrise Refinery Ltd." required class="contact-input" />
+                </div>
+              </div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div class="contact-field-wrap">
+                  <label class="contact-label">Business Email <span class="text-sky2-500">*</span></label>
+                  <input type="email" name="email" placeholder="you@company.com" required class="contact-input" />
+                </div>
+                <div class="contact-field-wrap">
+                  <label class="contact-label">Phone / WhatsApp</label>
+                  <input type="tel" name="phone" placeholder="+971 50 000 0000" class="contact-input" />
+                </div>
+              </div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div class="contact-field-wrap">
+                  <label class="contact-label">Inquiry Type</label>
+                  <div class="contact-select-wrap">
+                    <select name="inquiry_type" class="contact-input contact-select">
+                      <option value="">Select inquiry type</option>
+                      <option>Spot Cargo One-Time Purchase</option>
+                      <option>Long-Term Supply Agreement</option>
+                      <option>Annual Volume Contract</option>
+                      <option>Grade & Specification Query</option>
+                      <option>Origin & Certification Query</option>
+                      <option>Freight / Incoterms Discussion</option>
+                      <option>Mill or Supplier Partnership</option>
+                      <option>Market Pricing / Intelligence</option>
+                      <option>General Trade Inquiry</option>
+                    </select>
+                    <svg viewBox="0 0 20 20" class="contact-select-icon" fill="currentColor"><path d="M5.2 7.5 10 12.3l4.8-4.8 1.2 1.2-6 6-6-6 1.2-1.2Z"/></svg>
+                  </div>
+                </div>
+                <div class="contact-field-wrap">
+                  <label class="contact-label">Sugar Grade</label>
+                  <div class="contact-select-wrap">
+                    <select name="grade" class="contact-input contact-select">
+                      <option value="">Select grade of interest</option>
+                      <option>Raw Sugar VHP / V-VHP</option>
+                      <option>Refined White ICUMSA 45</option>
+                      <option>Refined White ICUMSA 100-150</option>
+                      <option>S-30 Crystal (India)</option>
+                      <option>Liquid Sugar 65-70° Brix</option>
+                      <option>Icing Sugar 6x-12x</option>
+                      <option>Multiple / TBD</option>
+                    </select>
+                    <svg viewBox="0 0 20 20" class="contact-select-icon" fill="currentColor"><path d="M5.2 7.5 10 12.3l4.8-4.8 1.2 1.2-6 6-6-6 1.2-1.2Z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <div class="contact-field-wrap">
+                  <label class="contact-label">Estimated Volume (MT)</label>
+                  <input type="text" name="volume" placeholder="e.g. 5,000 MT / month" class="contact-input" />
+                </div>
+                <div class="contact-field-wrap">
+                  <label class="contact-label">Destination Port / Country</label>
+                  <input type="text" name="destination" placeholder="e.g. Jeddah, Saudi Arabia" class="contact-input" />
+                </div>
+              </div>
+              <div class="contact-field-wrap">
+                <label class="contact-label">Message / Specifications</label>
+                <textarea name="message" rows="5" placeholder="Tell us your grade, packing, delivery schedule, and any specific requirements..." class="contact-input resize-none"></textarea>
+              </div>
+
+              <div class="flex items-start gap-3 pt-1">
+                <input type="checkbox" id="consent" name="consent" class="contact-checkbox mt-0.5 shrink-0" />
+                <label for="consent" class="text-sm leading-relaxed text-ink-500">I agree to Falcon Diamond contacting me regarding this inquiry. We respect your privacy and do not share data with third parties.</label>
+              </div>
+
+              <button type="submit" class="contact-submit-btn magnetic pulse-cta glossy sheen group relative mt-2 inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 px-8 py-4.5 text-base font-600 text-white shadow-glow transition hover:shadow-lift sm:w-auto sm:px-12">
+                <span class="relative">Send to Trading Desk</span>
+                <svg viewBox="0 0 20 20" class="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+              </button>
+
+              <p id="formSuccess" class="mt-4 items-center gap-2 rounded-xl border border-green-200 bg-green-50 px-5 py-3.5 text-sm font-500 text-green-700">
+                <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                WhatsApp opened with your inquiry our desk will respond shortly.
+              </p>
+            </form>
+          </div>
+
+          <!-- ── RIGHT: INFO CARDS (2 cols) ── -->
+          <div class="lg:col-span-2">
+            <div class="reveal-right sticky top-28 space-y-4">
+
+              <!-- Decorative photo panel -->
+              <div class="relative overflow-hidden rounded-3xl shadow-lift h-52">
+                <img src="assets/Contact/32828.jpg" alt="Falcon Diamond trading office" class="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105" />
+                <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,27,45,.75) 0%,transparent 55%)"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-5">
+                  <p class="font-display text-base font-600 text-white">Falcon Diamond HQ</p>
+                  <p class="mt-0.5 text-xs text-white/75">DMCC Free Zone, Dubai, UAE</p>
+                </div>
+              </div>
+
+              <div class="contact-info-card group">
+                <div class="contact-info-icon bg-gradient-to-br from-brand-500 to-brand-700">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-600 uppercase tracking-label text-ink-400">Email</p>
+                  <a href="mailto:trading@faldia.com" class="mt-1 block font-display text-lg font-500 text-ink-900 transition group-hover:text-brand-600">trading@faldia.com</a>
+                  <a href="mailto:hello@faldia.com" class="mt-0.5 block text-sm text-ink-500 transition hover:text-brand-600">hello@faldia.com</a>
+                </div>
+              </div>
+
+              <div class="contact-info-card group">
+                <div class="contact-info-icon" style="background:linear-gradient(135deg,#25d366,#128c7e)">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 text-white" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.9 2.6 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 5 4.3 1.8.7 2.5.8 3.4.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.3-.2Z"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-600 uppercase tracking-label text-ink-400">WhatsApp</p>
+                  <a href="https://wa.me/971500000000" class="mt-1 block font-display text-lg font-500 text-ink-900 transition group-hover:text-brand-600">+971 50 000 0000</a>
+                  <p class="mt-0.5 text-sm text-ink-500">Direct line to the trading desk</p>
+                </div>
+              </div>
+
+              <div class="contact-info-card group">
+                <div class="contact-info-icon bg-gradient-to-br from-sky2-500 to-brand-600">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-600 uppercase tracking-label text-ink-400">Trading Hours</p>
+                  <p class="mt-1 font-display text-lg font-500 text-ink-900">Sun - Thu, 08:00-18:00</p>
+                  <p class="mt-0.5 text-sm text-ink-500">Gulf Standard Time (UTC+4)</p>
+                </div>
+              </div>
+
+              <div class="contact-info-card group">
+                <div class="contact-info-icon bg-gradient-to-br from-brand-500 to-brand-700">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5 text-white" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-600 uppercase tracking-label text-ink-400">Headquarters</p>
+                  <p class="mt-1 font-display text-lg font-500 text-ink-900">Dubai, UAE</p>
+                  <p class="mt-0.5 text-sm text-ink-500">DMCC Free Zone · Trade Centre</p>
+                </div>
+              </div>
+
+              <!-- Quick-connect buttons -->
+              <div class="mt-2 grid grid-cols-2 gap-3">
+                <a href="mailto:trading@faldia.com" class="glass glossy sheen group flex items-center justify-center gap-2 rounded-2xl px-4 py-3.5 text-sm font-600 text-brand-600 transition hover:bg-brand-50">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Email Us
+                </a>
+                <a href="https://wa.me/971500000000" class="glossy sheen group flex items-center justify-center gap-2 rounded-2xl px-4 py-3.5 text-sm font-600 text-white transition" style="background:linear-gradient(135deg,#25d366,#128c7e)">
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.9 2.6 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 5 4.3 1.8.7 2.5.8 3.4.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.3-.2Z"/></svg>
+                  WhatsApp
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== MAP SECTION ============== -->
+    <section class="relative overflow-hidden py-24" style="background:linear-gradient(to bottom,#f8fbff 0%,#eef4fb 100%)">
+      <div class="orb orb-ambient right-10 top-10 h-96 w-96 bg-brand-100" style="filter:blur(80px);opacity:.5"></div>
+
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="reveal-up mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <p class="section-label">Find Us</p>
+            <h2 class="mt-3 font-display text-4xl font-500 tracking-tight text-ink-900">Visit our trading desk.</h2>
+          </div>
+          <p class="max-w-xs text-sm leading-relaxed text-ink-500">DMCC Free Zone, Jumeirah Lakes Towers, Dubai, United Arab Emirates.</p>
+        </div>
+
+        <!-- Map + sidebar grid -->
+        <div class="reveal-scale grid items-stretch gap-5 lg:grid-cols-3">
+
+          <!-- Google Maps iframe replace src with your embed URL from Google Maps → Share → Embed -->
+          <div class="map-iframe-wrap lg:col-span-2 overflow-hidden rounded-[2rem] shadow-lift ring-gradient relative">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57839.06028744563!2d55.094568485427736!3d25.07655497839395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+              width="100%"
+              height="480"
+              style="border:0;display:block;filter:saturate(.85) contrast(1.04)"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Falcon Diamond Dubai, UAE"
+            ></iframe>
+            <!-- Branded overlay chip -->
+            <div class="absolute left-4 top-4 flex items-center gap-2.5 rounded-2xl px-4 py-2.5" style="background:rgba(255,255,255,.92);backdrop-filter:blur(12px);box-shadow:0 4px 20px -4px rgba(23,63,112,.18)">
+              <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 shadow-glow">
+                <svg viewBox="0 0 24 24" class="h-3.5 w-3.5 text-white" fill="currentColor"><path d="M12 2 22 9l-10 13L2 9l10-7Zm0 3.2L6.1 9.4 12 17.9l5.9-8.5L12 5.2Z"/></svg>
+              </span>
+              <div>
+                <p class="text-xs font-700 leading-none text-ink-900">Falcon Diamond</p>
+                <p class="mt-0.5 text-xs text-ink-500">DMCC · Dubai, UAE</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side info panel -->
+          <div class="flex flex-col gap-4">
+
+            <!-- Address card with photo -->
+            <div class="overflow-hidden rounded-[2rem] shadow-lift ring-gradient relative h-48">
+              <img src="assets/Contact/16279.jpg" alt="Dubai skyline" class="h-full w-full object-cover object-center" />
+              <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(15,27,45,.88) 0%,rgba(15,27,45,.3) 60%,transparent 100%)"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-5">
+                <p class="font-display text-base font-600 text-white">Dubai, United Arab Emirates</p>
+                <p class="mt-1 text-xs leading-relaxed text-white/75">DMCC Free Zone<br/>Jumeirah Lakes Towers</p>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="glass glossy ring-gradient rounded-[2rem] p-6">
+              <p class="text-xs font-600 uppercase tracking-label text-brand-600 mb-4">By the numbers</p>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="text-center">
+                  <p class="font-display text-2xl font-600 text-ink-900">4</p>
+                  <p class="mt-0.5 text-xs text-ink-500">Origin Countries</p>
+                </div>
+                <div class="text-center">
+                  <p class="font-display text-2xl font-600 text-ink-900">12+</p>
+                  <p class="mt-0.5 text-xs text-ink-500">Buyer Markets</p>
+                </div>
+                <div class="text-center">
+                  <p class="font-display text-2xl font-600 text-ink-900">&lt;4h</p>
+                  <p class="mt-0.5 text-xs text-ink-500">Response Time</p>
+                </div>
+                <div class="text-center">
+                  <p class="font-display text-2xl font-600 text-ink-900">24/7</p>
+                  <p class="mt-0.5 text-xs text-ink-500">Market Watch</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Directions link -->
+            <a href="https://maps.google.com/?q=DMCC+Jumeirah+Lakes+Towers+Dubai" target="_blank" rel="noopener" class="glass glossy sheen group flex items-center justify-between rounded-2xl px-5 py-4 text-sm font-600 text-brand-600 transition hover:bg-brand-50">
+              <span class="flex items-center gap-2.5">
+                <svg viewBox="0 0 24 24" class="h-5 w-5 text-brand-500" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                Get Directions
+              </span>
+              <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== FINAL CTA STRIP ============== -->
+    <section class="relative overflow-hidden py-28">
+      <div class="absolute inset-0 z-0">
+        <img src="assets/2151953961.jpg" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0" style="background:linear-gradient(135deg,rgba(15,27,45,.93) 0%,rgba(23,63,112,.88) 55%,rgba(15,27,45,.91) 100%)"></div>
+      </div>
+      <div class="orb orb-ambient -left-10 top-10 h-80 w-80" style="background:rgba(56,189,248,.08)"></div>
+      <div class="orb orb-ambient-alt right-0 bottom-0 h-96 w-96" style="background:rgba(37,99,168,.1)"></div>
+
+      <div class="relative z-10 mx-auto max-w-4xl px-6 text-center lg:px-8">
+        <div class="reveal-scale">
+          <p class="section-label-dark justify-center">Ready to trade?</p>
+          <h2 class="mt-4 font-display text-4xl font-500 tracking-tight text-white sm:text-5xl">The desk is live.<br /><span class="gradient-animated-hero">Your offer is waiting.</span></h2>
+          <p class="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white" style="text-shadow:0 1px 8px rgba(0,0,0,.5)">Skip the form if you're ready to talk. Our trading team picks up direct tell us your grade, volume, and destination.</p>
+          <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href="mailto:trading@faldia.com" class="magnetic glossy sheen group inline-flex items-center gap-2.5 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 px-8 py-4 text-base font-600 text-white shadow-glow transition hover:shadow-lift">
+              <span class="relative">Email the Desk</span>
+              <svg viewBox="0 0 20 20" class="relative h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+            <a href="https://wa.me/971500000000" class="magnetic glass-dark inline-flex items-center gap-2.5 rounded-2xl px-8 py-4 text-base font-600 text-white transition hover:bg-white/20">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.9 2.6 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 5 4.3 1.8.7 2.5.8 3.4.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.3-.2Z"/></svg>
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="relative overflow-hidden border-t border-white/40 bg-gradient-to-b from-brand-50/70 via-sky-50/40 to-white">
+    <div class="orb orb-ambient right-10 -top-10 h-80 w-80 bg-brand-100"></div>
+    <div class="orb orb-ambient-alt left-0 bottom-0 h-72 w-72 bg-sky-100"></div>
+
+    <div class="relative mx-auto max-w-7xl px-6 pt-16 lg:px-8">
+
+      <div class="reveal-up glass glossy sheen relative overflow-hidden rounded-[2rem] px-7 py-9 lg:px-12 lg:py-10">
+        <div class="relative grid items-center gap-8 lg:grid-cols-2">
+          <div>
+            <p class="text-xs font-600 uppercase tracking-label text-brand-500">Market intelligence</p>
+            <h3 class="mt-2 font-display text-2xl font-500 leading-snug text-ink-900 sm:text-3xl">Get our weekly sugar market brief.</h3>
+            <p class="mt-2 text-sm text-ink-500">Origin movements, ICUMSA spreads, freight signals straight to your inbox.</p>
+          </div>
+          <div class="flex w-full flex-col gap-3 sm:flex-row sm:justify-end">
+            <div class="newsletter-input glass flex w-full items-center gap-2 rounded-xl px-4 py-1 sm:max-w-xs transition">
+              <svg viewBox="0 0 24 24" class="h-5 w-5 shrink-0 text-ink-400" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <input type="email" placeholder="you@company.com" class="w-full bg-transparent py-2.5 text-sm text-ink-700 placeholder:text-ink-400 focus:outline-none" />
+            </div>
+            <a href="mailto:hello@faldia.com" class="magnetic glossy sheen inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 px-6 py-3 text-sm font-600 text-white shadow-glow transition hover:shadow-lift">
+              <span class="relative">Subscribe</span>
+              <svg viewBox="0 0 20 20" class="relative h-4 w-4" fill="currentColor"><path d="M11 4.2 16.8 10 11 15.8l-1.3-1.3 3.6-3.6H3v-1.8h10.3L9.7 5.5 11 4.2Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <a href="index.html" class="flex items-center">
+            <img src="assets/logo.png" alt="Falcon Diamond" class="h-10 w-auto" />
+          </a>
+          <p class="mt-5 max-w-sm font-display text-xl font-400 leading-snug text-ink-700">Precision Sugar Trading. <span class="bg-gradient-to-r from-brand-600 to-sky2-500 bg-clip-text text-transparent">Global Reach.</span> Assured Quality.</p>
+          <div class="mt-6 space-y-2.5">
+            <a href="mailto:hello@faldia.com" class="group flex items-center gap-3 text-sm text-ink-500 transition hover:text-brand-600">
+              <span class="glass glossy flex h-9 w-9 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              hello@faldia.com
+            </a>
+            <a href="mailto:trading@faldia.com" class="group flex items-center gap-3 text-sm text-ink-500 transition hover:text-brand-600">
+              <span class="glass glossy flex h-9 w-9 items-center justify-center rounded-xl text-brand-600"><svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              trading@faldia.com
+            </a>
+          </div>
+          <div class="mt-7 flex gap-2.5">
+            <a href="#" aria-label="LinkedIn" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#0a66c2,#004182);box-shadow:0 6px 18px -4px rgba(10,102,194,.5)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.2 8.2h4.6V24H.2V8.2Zm7.5 0h4.4v2.16h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v9.02h-4.6v-8c0-1.9-.03-4.36-2.66-4.36-2.66 0-3.07 2.08-3.07 4.22V24H7.7V8.2Z"/></svg></a>
+            <a href="#" aria-label="X" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#14171a,#2c2c2c);box-shadow:0 6px 18px -4px rgba(0,0,0,.38)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M18.2 2H21l-6.6 7.5L22 22h-6.1l-4.8-6.3L5.6 22H2.8l7-8L2 2h6.2l4.3 5.7L18.2 2Zm-2.1 18h1.7L7.9 3.7H6.1L16.1 20Z"/></svg></a>
+            <a href="#" aria-label="WhatsApp" class="glossy sheen flex h-11 w-11 items-center justify-center rounded-xl transition duration-300 hover:-translate-y-1 hover:scale-105" style="background:linear-gradient(135deg,#25d366,#128c7e);box-shadow:0 6px 18px -4px rgba(37,211,102,.42)"><svg viewBox="0 0 24 24" class="h-4 w-4 text-white" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Zm4.5-5.9c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.9 2.6 0 1.4 1 2.7 1.2 2.9.1.2 2 3.1 5 4.3 1.8.7 2.5.8 3.4.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.3-.2Z"/></svg></a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Company</p>
+          <ul class="mt-4 space-y-3 text-sm text-ink-500">
+            <li><a href="index.html" class="transition hover:text-brand-600 hover:pl-1">Home</a></li>
+            <li><a href="about.html" class="transition hover:text-brand-600 hover:pl-1">About</a></li>
+            <li><a href="products.html" class="transition hover:text-brand-600 hover:pl-1">Products</a></li>
+            <li><a href="contact.html" class="font-600 text-brand-600">Contact</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Products</p>
+          <ul class="mt-4 space-y-3 text-sm text-ink-500">
+            <li><a href="products.html#raw-sugar" class="transition hover:text-brand-600 hover:pl-1">Raw Sugar</a></li>
+            <li><a href="products.html#refined-white" class="transition hover:text-brand-600 hover:pl-1">Refined White</a></li>
+            <li><a href="products.html#indian-s30" class="transition hover:text-brand-600 hover:pl-1">S-30 Crystal</a></li>
+            <li><a href="products.html#liquid-sugar" class="transition hover:text-brand-600 hover:pl-1">Liquid &amp; Icing</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-3">
+          <p class="text-xs font-600 uppercase tracking-label text-ink-400">Assurance</p>
+          <ul class="mt-4 space-y-3">
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SGS Verified</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Bureau Veritas</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Incoterms 2020</li>
+            <li class="flex items-center gap-2.5 text-sm text-ink-500"><span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 text-white"><svg viewBox="0 0 24 24" class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Full Doc Package</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/60 py-8 sm:flex-row">
+        <p class="text-sm text-ink-400">© 2026 Falcon Diamond · faldia.com</p>
+        <div class="flex gap-6 text-sm text-ink-400">
+          <a href="#" class="transition hover:text-brand-600">Privacy</a>
+          <a href="#" class="transition hover:text-brand-600">Terms</a>
+          <a href="#" class="transition hover:text-brand-600">Incoterms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+  <script src="contact-main.js" defer></script>
+</body>
+</html>
