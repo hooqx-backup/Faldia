@@ -43,7 +43,7 @@ const countIO = new IntersectionObserver((entries) => {
     countIO.unobserve(el);
   });
 }, { threshold: 0.6 });
-document.querySelectorAll('[data-count]').forEach(el => countIO.observe(el));
+document.querySelectorAll('[data-count]:not([data-suffix])').forEach(el => countIO.observe(el));
 
 /* ── Hero parallax orbs ───────────────────────────────────────── */
 const parallaxEls = document.querySelectorAll('[data-speed]');
@@ -99,6 +99,180 @@ document.querySelectorAll('.magnetic').forEach(btn => {
     });
     field.appendChild(p);
   }
+})();
+
+/* ── Solutions: cursor spotlight inside each card ─────────────── */
+document.querySelectorAll('.sol-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--sx', ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%');
+    card.style.setProperty('--sy', ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.setProperty('--sx', '50%');
+    card.style.setProperty('--sy', '50%');
+  });
+});
+
+/* ── Featured grades: scroll-driven image parallax ───────────── */
+(function initProdParallax() {
+  const imgs = document.querySelectorAll('.prod-img');
+  if (!imgs.length) return;
+  function update() {
+    imgs.forEach(img => {
+      const card = img.closest('.prod-card');
+      const r = card.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      const mid = r.top + r.height / 2 - window.innerHeight / 2;
+      img.style.setProperty('--py', (mid * -0.09).toFixed(1) + 'px');
+    });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+/* ── Featured grades: magnetic directional shadow ─────────────── */
+document.querySelectorAll('.prod-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const cx = (e.clientX - r.left) / r.width  - 0.5;
+    const cy = (e.clientY - r.top)  / r.height - 0.5;
+    card.style.setProperty('--ms-x', (cx * 22).toFixed(1) + 'px');
+    card.style.setProperty('--ms-y', (cy * 22 + 18).toFixed(1) + 'px');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.setProperty('--ms-x', '0px');
+    card.style.setProperty('--ms-y', '20px');
+  });
+});
+
+/* ── Featured grades: word-split heading reveal ───────────────── */
+(function initFeatHeading() {
+  const h2 = document.getElementById('featured-heading');
+  if (!h2) return;
+  const words = h2.textContent.trim().split(/\s+/);
+  h2.innerHTML = words.map((w, i) =>
+    `<span class="feat-word"><span class="feat-word-inner" style="transition-delay:${(i * 0.14).toFixed(2)}s">${w}</span></span>`
+  ).join(' ');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.feat-word-inner').forEach(s => s.classList.add('revealed'));
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+  io.observe(h2);
+})();
+
+/* ── 4. Hero "simplified." letter scramble on load ───────────── */
+(function initHeroScramble() {
+  const el = document.querySelector('.gradient-animated-hero');
+  if (!el) return;
+  const final = el.textContent.trim();
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const dur = 1100;
+  let t0 = null;
+  function run(ts) {
+    if (!t0) t0 = ts;
+    const p = Math.min((ts - t0) / dur, 1);
+    const locked = Math.floor(p * final.length);
+    let out = '';
+    for (let i = 0; i < final.length; i++) {
+      if (final[i] === ' ' || final[i] === '.') { out += final[i]; continue; }
+      out += i < locked ? final[i] : alpha[Math.floor(Math.random() * alpha.length)];
+    }
+    el.textContent = out;
+    if (p < 1) requestAnimationFrame(run);
+    else el.textContent = final;
+  }
+  setTimeout(() => requestAnimationFrame(run), 680);
+})();
+
+/* ── 3. Intro stat cards: rotateY flip-in IO ─────────────────── */
+(function initStatCards() {
+  const grid = document.querySelector('.stat-grid');
+  if (!grid) return;
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    [...grid.querySelectorAll('.stat-card')].forEach((c, i) =>
+      setTimeout(() => c.classList.add('visible'), i * 100)
+    );
+    io.disconnect();
+  }, { threshold: 0.25 });
+  io.observe(grid);
+})();
+
+/* ── 6. Active desk: count-up with optional suffix ───────────── */
+(function initSuffixCounters() {
+  const els = document.querySelectorAll('[data-suffix]');
+  if (!els.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, tgt = +el.dataset.count, sfx = el.dataset.suffix || '';
+      const s = performance.now();
+      (function tick(now) {
+        const t = Math.min((now - s) / 1600, 1);
+        el.textContent = Math.round((1 - Math.pow(1 - t, 3)) * tgt) + sfx;
+        if (t < 1) requestAnimationFrame(tick);
+      })(s);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  els.forEach(el => io.observe(el));
+})();
+
+/* ── 7. Market intel rows: perspective stagger reveal ────────── */
+(function initMktRows() {
+  const container = document.querySelector('.mkt-rows-container');
+  if (!container) return;
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    [...container.querySelectorAll('.mkt-row')].forEach((r, i) =>
+      setTimeout(() => r.classList.add('visible'), i * 130)
+    );
+    io.disconnect();
+  }, { threshold: 0.2 });
+  io.observe(container);
+})();
+
+/* ── 8. Markets region cards: cursor spotlight ───────────────── */
+document.querySelectorAll('.mkt-region').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--rx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+    card.style.setProperty('--ry', ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.setProperty('--rx', '50%');
+    card.style.setProperty('--ry', '50%');
+  });
+});
+
+/* ── 10. CTA heading: typewriter when scrolled into view ─────── */
+(function initTypewriter() {
+  const h = document.getElementById('cta-heading');
+  if (!h) return;
+  const text = h.textContent.trim();
+  h.textContent = '';
+  const cursor = document.createElement('span');
+  cursor.className = 'cta-cursor';
+  h.appendChild(cursor);
+  let done = false;
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting || done) return;
+    done = true; io.disconnect();
+    let i = 0;
+    (function type() {
+      if (i < text.length) {
+        h.insertBefore(document.createTextNode(text[i++]), cursor);
+        setTimeout(type, 44);
+      } else {
+        setTimeout(() => { cursor.style.animation = 'none'; cursor.style.opacity = '0'; }, 1600);
+      }
+    })();
+  }, { threshold: 0.55 });
+  io.observe(h);
 })();
 
 /* ── Mobile menu ──────────────────────────────────────────────── */

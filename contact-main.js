@@ -9,10 +9,22 @@
 const WA_NUMBER = '971500000000';
 
 (function initContactForm() {
-  const form       = document.getElementById('contactForm');
-  const successMsg = document.getElementById('formSuccess');
-  const submitBtn  = form ? form.querySelector('.contact-submit-btn') : null;
+  const form      = document.getElementById('contactForm');
+  const toast     = document.getElementById('successToast');
+  const toastClose = document.getElementById('toastClose');
+  const submitBtn = form ? form.querySelector('.contact-submit-btn') : null;
   if (!form) return;
+
+  let toastTimer;
+  function showToast() {
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 5000);
+  }
+  toastClose?.addEventListener('click', () => {
+    toast.classList.remove('show');
+    clearTimeout(toastTimer);
+  });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -84,8 +96,8 @@ const WA_NUMBER = '971500000000';
     setTimeout(() => {
       window.open(waURL, '_blank', 'noopener,noreferrer');
 
-      successMsg.classList.add('show');
-      successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      showToast();
+      form.reset();
 
       /* Reset button after 3s so user can send another message */
       setTimeout(() => {
